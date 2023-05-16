@@ -1,4 +1,4 @@
-# Projekt2TorgeSnehpreet
+# Projekt2
 
 ## Schiffe verseneken
 
