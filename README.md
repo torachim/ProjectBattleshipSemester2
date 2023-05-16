@@ -15,3 +15,7 @@ Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt.
 - [ ] Main Datei zur ausfuehrung des Spiels schreiben
 - [ ] Serverkommunikation schreiben
 
+
+## UML battleship
+
+/home/odin/Downloads/uml battleships.png
