@@ -1,185 +1,216 @@
-//10 mal 10 Feld | 4 Schiffe (4*1 Groß) 
+//10 mal 10 Feld | 4 Schiffe (4*1 Groß)
 
+#include "boardInterface.hpp"
 #include <iostream>
-#include <ctime>
-
+#include<string>
 using namespace std;
 
-const int rows = 10;
-const int columns =10;
-int matrix [rows][columns];
-const char SHIP = 'S';  
-const char HIT = 'H';
-const char MISS ='M';
 
+namespace ProjectAlpha2{
 
-void Board() // Erstellt das Board, Funktion vielleicht unnötig
-{
-     for (int r = 0; r < rows; r++)
-     {
-        for(int c = 0; c < columns; c ++)
-        {
-            matrix[r][c] = 0;
-        }
-     }
-}
+    //class board {//: public boardInterface {
 
-
-void printBorad() //druckt das Board
-{
-    for (int r = 0; r < rows; r++)
-     {
-        for(int c = 0; c < columns; c ++)
-        {
-            cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
-        }
-     } 
-    cout<<endl; 
-}
-
-
-void setShips()
-{
-    int x;  // Variable für Column Eingabe
-    int y;  // Variable für Row Eingabe
-    bool isHorizontal; // Entscheidet in welche Richtung das Ship geht
-
-    cout << endl <<"Enter starting coordinate (x,y): " ; //Abfrage der Anfangskoordinate
-    cin >> y >> x;
-
-    cout << endl << "Enter Orientation(0 for horizontal,1 for vertical): "; //Abfrage der Richtung
-    cin >> isHorizontal;
-
-    if(!canSetShip)  //Überprüft ob Eingabe korrekt
-    {
-        cout<< "Input incorrect. Please try again.";
+        /*public:
+        void board();
+        void printBoard(); 
         void setShips();
-    }
-    
-    int c = x;
-    int r = y;
-
-    if(isHorizontal) //Setzt ein horizontales Schiff
-    {
-        for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
-        {
-        matrix[y][x] = SHIP; // wird durch S gekennzeichnet (muss später entfernt werden)
-        x = x + 1;
-        }
-    }
+        bool canSetShip();
+        void shot();
+        void winner();
+        */
     
 
-    else
-    {
-        for (int i = 0; i < 4; ++i) 
+        //private: //Wohin damit ???
+        const int rows =10 ;
+        const int columns =10;
+        char matrix [rows][columns]; 
+        const char SHIP = 'S';  
+        const char HIT = 'H';
+        const char MISS ='M';
+        const char LEER ='*';
+        
+
+
+        void board() // Erstellt das Board, Funktion vielleicht unnötig
         {
-        matrix[y][x] = SHIP;
-        y = y + 1;
-        }
-    }
-
-    printBorad(); 
-    setShips(); // Funktion 4 mal aufgerufen, da man 4 Ships setzt
-    setShips();
-    setShips();
-}
-
-
-bool canSetShip(int x, int y, bool isHorizontal)  //Überprüft, ob Eingabe korrekt ist
-{
-    if(isHorizontal)
-    {
-        if(x+10 > 10)  //Prüft, ob Ship übers Board hinaus läuft
-        {
-            return false;
-        }
-
-        for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde
-        {
-            if(matrix[y][x] == SHIP)
+            for (int r = 0; r < rows; r++)
             {
-                return false; 
+                for(int c = 0; c < columns; c ++)
+                {
+                    matrix[r][c] = LEER;
+                }
             }
         }
-    }
 
-    else
-    {
-        if(y+10 > 10)
+
+        void printBoard() //druckt das Board
         {
-            return false;
+
+            for (int r = 0; r < rows; r++)
+            {
+                for(int c = 0; c < columns; c ++)
+                {
+                    cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
+                }
+                cout<<endl; 
+            } 
+           
         }
 
-        for (int i = 0; i < 4; ++i) 
+
+        bool canSetShip(int c, int r, bool isHorizontal)  //Überprüft, ob Eingabe korrekt ist
         {
-            if(matrix[y][x] == SHIP)
+            if(isHorizontal)
             {
-                return false;
+                if(c+10 > 10)  //Prüft, ob Ship übers Board hinaus läuft
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde
+                {
+                    if(matrix[r][c] == SHIP)
+                    {
+                        return false; 
+                    }
+                }
+            }
+
+            else
+            {
+                if(r+10 > 10)
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < 4; ++i) 
+                {
+                    if(matrix[r][c] == SHIP)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+        }
+
+        void setShips()
+        {
+            int x;  // Variable für Column Eingabe
+            int y;  // Variable für Row Eingabe
+            bool isHorizontal; // Entscheidet in welche Richtung das Ship geht
+
+            cout << endl <<"Enter starting coordinate x: " ; //Abfrage der Anfangskoordinate
+            cin >> x ;
+            cout << endl <<"Enter starting coordinate y: " ;
+            cin >> y;
+
+            cout << endl << "Enter Orientation(1 for horizontal,0 for vertical): "; //Abfrage der Richtung
+            cin >> isHorizontal;
+
+            int c = x -1 ; //  da Index eigentlich bei null beginnt
+            int r = y -1 ;
+
+            bool canSet = canSetShip (x, y, isHorizontal);
+            /*if(!=canSet)  //Überprüft ob Eingabe korrekt
+            {
+                cout<< "Input incorrect. Please try again.";
+                void setShips();
+            }*/
+            
+            if(isHorizontal) //Setzt ein horizontales Schiff
+            {
+                for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
+                {
+                matrix[r][c] = SHIP; // wird durch S gekennzeichnet (muss später entfernt werden)
+                c = c + 1;
+                }
+            }
+            
+
+            else
+            {
+                for (int i = 0; i < 4; ++i) 
+                {
+                matrix[r][c] = SHIP;
+                r = r + 1;
+                }
+            }
+
+            printBoard(); 
+            
+        }
+
+
+        void winner() //Testet, ob alle S(SHIPS) getroffen wurden
+        {
+            int h;
+            h = h+1; // Counter für alle Hits eines Spielers
+
+            if(h==16){ //Überprüft ob maximal Anzahl von Hits erreicht wurden, also alle Schiffe vollständig getroffen wurden
+                cout<<endl<< "Congratulation, you are the Winner!"<<endl << "GAMEOVER";
+                //startGame(); // startet nächste Runde
             }
         }
-    }
-
-}
 
 
-void shot(){
+        void shot(){
 
-    int x;
-    int y;
+            int x;
+            int y;
 
-    cout << endl <<"Enter coordinate (x,y): "; //Abfrage nach einem Rateversuch
-    cin >> y >> x;
+            cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
+            cin >> x;
+            cout << endl <<"Enter y coordinate: ";
+            cin >> y;
 
-    if(matrix[x][y] == SHIP) //Überprüft, ob es ein Hit ist
-    {
-        matrix[x][y] = HIT;
-        printBorad();
-        winner(); // Testet, ob alle S (SHIPS) getroffen wurden
-        cout<<endl<< "Hit! Continue"; 
-        shot(); // nach einem Hit ein weiterer Rateversuch
-    }
+            int r = y;
+            int c = x;
 
-    else{
-        matrix[x][y] = MISS;
-        printBorad();
-        cout<<endl<< "Miss! It's your opponent's turn";
-        //Zum anderen Feld wechseln
-    }
+            if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
+                cout<< endl << " Input incorrect. Please try again.";
+                shot();
+            }
 
-    if(matrix[x][y] == HIT){ //Testet, ob Eingabe korrekt ist
-        cout<< endl << " Input incorrect. Please try again.";
-        shot();
-    }
+            if(matrix[r][c] == MISS){ //Testet, ob Eingabe korrekt ist
+                cout<< endl << " Input incorrect. Please try again.";
+                shot();
+            }
 
-    if(matrix[x][y] == MISS){ //Testet, ob Eingabe korrekt ist
-        cout<< endl << " Input incorrect. Please try again.";
-        shot();
-    }
-}
+            if(matrix[r][c] == SHIP) //Überprüft, ob es ein Hit ist
+            {
+                matrix[r][c] = HIT;
+                printBoard();
+                winner(); // Testet, ob alle S (SHIPS) getroffen wurden
+                cout<<endl<< "Hit! Continue"; 
+                shot(); // nach einem Hit ein weiterer Rateversuch
+            }
 
-void winner() //Testet, ob alle S(SHIPS) getroffen wurden
-{
-    int h;
-    h = h+1; // Counter für alle Hits eines Spielers
+            else{
+                matrix[r][c] = MISS;
+                printBoard();
+                cout<<endl<< "Miss! It's your opponent's turn";
+                //Zum anderen Feld wechseln
+            }
 
-    if(h==16){ //Überprüft ob maximal Anzahl von Hits erreicht wurden, also alle Schiffe vollständig getroffen wurden
-        cout<<endl<< "Congratulation, you are the Winner!"<<endl << "GAMEOVER";
-        startGame(); // startet nächste Runde
-    }
-}
+        }
+         
 
-void startGame()
-{
-    cout<<"Start the Game:"; //...
-    //Spieler Funktion (pick a player)
-    //2 Boards erstellen
-    setShips();
-    // Feld wechseln
-    shot(); // dort wird in der Funktion das Feld gewechselt
-}
+        void startGame()
+        {
+            cout<<"Start the Game:"; 
+            board();
+            //Spieler Funktion (pick a player)
+            //2 Boards erstellen
+            setShips();
+            setShips();
+            setShips();
+            setShips();
 
+            // Feld wechseln
+            shot(); // dort wird in der Funktion das Feld gewechselt
+        }
 
-int main()
-{
-    startGame();
+   // };
+
 }
