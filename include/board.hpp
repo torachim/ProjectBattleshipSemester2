@@ -93,6 +93,7 @@ namespace ProjectAlpha2{
                     r = r + 1;
                 }
             }
+            return true;
 
             return true;
         }
@@ -117,7 +118,7 @@ namespace ProjectAlpha2{
             bool canSet = canSetShip (c, r, isHorizontal);
             if(canSet)  //Überprüft ob Eingabe korrekt
             {
-
+               
                 if(isHorizontal) //Setzt ein horizontales Schiff
                 {
                     for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
