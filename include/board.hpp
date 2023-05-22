@@ -91,6 +91,7 @@ namespace ProjectAlpha2{
                     }
                 }
             }
+            return true;
 
         }
 
@@ -112,11 +113,11 @@ namespace ProjectAlpha2{
             int r = y -1 ;
 
             bool canSet = canSetShip (x, y, isHorizontal);
-            /*if(!=canSet)  //Überprüft ob Eingabe korrekt
+            if(canSet == false)  //Überprüft ob Eingabe korrekt
             {
                 cout<< "Input incorrect. Please try again.";
                 void setShips();
-            }*/
+            }
             
             if(isHorizontal) //Setzt ein horizontales Schiff
             {
