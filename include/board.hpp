@@ -62,7 +62,7 @@ namespace ProjectAlpha2{
         {
             if(isHorizontal)
             {
-                if(c+10 > 10)  //Prüft, ob Ship übers Board hinaus läuft
+                if(c+3 > 9)  //Prüft, ob Ship übers Board hinaus läuft
                 {
                     return false;
                 }
@@ -73,12 +73,13 @@ namespace ProjectAlpha2{
                     {
                         return false; 
                     }
+                    c = c + 1;
                 }
             }
 
             else
             {
-                if(r+10 > 10)
+                if(r+3 > 9)
                 {
                     return false;
                 }
@@ -89,9 +90,11 @@ namespace ProjectAlpha2{
                     {
                         return false;
                     }
+                    r = r + 1;
                 }
             }
 
+            return true;
         }
 
         void setShips()
@@ -111,33 +114,37 @@ namespace ProjectAlpha2{
             int c = x -1 ; //  da Index eigentlich bei null beginnt
             int r = y -1 ;
 
-            bool canSet = canSetShip (x, y, isHorizontal);
-            /*if(!=canSet)  //Überprüft ob Eingabe korrekt
+            bool canSet = canSetShip (c, r, isHorizontal);
+            if(canSet)  //Überprüft ob Eingabe korrekt
             {
-                cout<< "Input incorrect. Please try again.";
-                void setShips();
-            }*/
-            
-            if(isHorizontal) //Setzt ein horizontales Schiff
-            {
-                for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
+
+                if(isHorizontal) //Setzt ein horizontales Schiff
                 {
-                matrix[r][c] = SHIP; // wird durch S gekennzeichnet (muss später entfernt werden)
-                c = c + 1;
+                    for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
+                    {
+                    matrix[r][c] = SHIP; // wird durch S gekennzeichnet (muss später entfernt werden)
+                    c = c + 1;
+                    }
                 }
+                
+
+                else
+                {
+                    for (int i = 0; i < 4; ++i) 
+                    {
+                    matrix[r][c] = SHIP;
+                    r = r + 1;
+                    }
+                }
+
+                printBoard(); 
             }
-            
 
             else
             {
-                for (int i = 0; i < 4; ++i) 
-                {
-                matrix[r][c] = SHIP;
-                r = r + 1;
-                }
+                cout<< endl << "Input incorrect. Please try again.";
+                void setShips();
             }
-
-            printBoard(); 
             
         }
 
@@ -198,7 +205,7 @@ namespace ProjectAlpha2{
 
         void startGame()
         {
-            cout<<"Start the Game:"; 
+            cout<<"START THE GAME:"<<endl; 
             board();
             //Spieler Funktion (pick a player)
             //2 Boards erstellen
