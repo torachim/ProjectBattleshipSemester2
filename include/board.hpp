@@ -95,7 +95,7 @@ namespace ProjectAlpha2{
             }
             return true;
 
-            return true;
+            //return true;
         }
 
         void setShips()
@@ -144,7 +144,7 @@ namespace ProjectAlpha2{
             else
             {
                 cout<< endl << "Input incorrect. Please try again.";
-                void setShips();
+                setShips();
             }
             
         }
@@ -167,13 +167,15 @@ namespace ProjectAlpha2{
             int x;
             int y;
 
+            cout << endl <<"Wage einen Schuss!";
+
             cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
             cin >> x;
             cout << endl <<"Enter y coordinate: ";
             cin >> y;
 
-            int r = y;
-            int c = x;
+            int r = y - 1;
+            int c = x - 1;
 
             if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
                 cout<< endl << " Input incorrect. Please try again.";
