@@ -3,6 +3,7 @@
 #include "boardInterface.hpp"
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 namespace ProjectAlpha2 {
@@ -11,9 +12,12 @@ class board : public boardInterface {
 
 public:
   board();
+  void printBoardS();
+  void printBoardG();
   void printBoard();
   void setShips();
   bool canSetShip(int c, int r, bool isHorizontal);
+  void isHit(int r, int c);
   void shot();
   bool winner();
 
@@ -50,9 +54,14 @@ private: // Wohin damit ???*/
                 {
                     cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
                 }
+<<<<<<< HEAD
 
             }
 
+=======
+            } 
+           
+>>>>>>> 1e4e2e054ef71e82ff9724302640f8b32c9256e6
         }
 
          void printBoardG() //druckt das Board
@@ -201,6 +210,7 @@ also alle Schiffe vollständig getroffen wurden
                 return true;
         }
 
+<<<<<<< HEAD
 
         void shot(){
 
@@ -216,6 +226,9 @@ Rateversuch cin >> x; cout << endl <<"Enter y coordinate: "; cin >> y;
             int r = y-1;
             int c = x-1;
 
+=======
+        void isHit(int r, int c){
+>>>>>>> 1e4e2e054ef71e82ff9724302640f8b32c9256e6
 
             if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
                 cout<< endl << " Input incorrect. Please try again.";
@@ -322,8 +335,13 @@ neu!");
                 // Feld wechseln
                 shot(); // dort wird in der Funktion das Feld gewechselt
             }
+<<<<<<< HEAD
             else{
                 throw logic_error("Verbotene Eingabe bitte Spiel neu starten!");
+=======
+            else { 
+            throw logic_error("Verbotene Eingabe bitte Spiell neu starten!");
+>>>>>>> 1e4e2e054ef71e82ff9724302640f8b32c9256e6
             }
         }
 

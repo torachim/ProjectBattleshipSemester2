@@ -2,7 +2,6 @@
 #include <iostream>
 
 using namespace std;
-
 namespace ProjectAlpha2{
 
             board::board() // Erstellt das Board, Funktion vielleicht unnötig
@@ -17,7 +16,7 @@ namespace ProjectAlpha2{
         }
 
 
-        void board::printBoard() //druckt das Board
+        void board::printBoardS() //druckt das Board
         {
             
             for (int r = 0; r < rows; r++)
@@ -30,6 +29,31 @@ namespace ProjectAlpha2{
                 
             } 
            
+        }
+
+        void board::printBoardG()
+        {
+            for (int r = 0; r < rows; r++)
+            {
+                cout<<endl;
+                for (int c = 0; c < columns; c++)
+                {
+                    if(matrix[r][c]==SHIP){
+                        cout<<LEER<< " " ;
+                    }
+                    else{
+                    cout<< matrix[r][c] << " " ;
+                    }
+                }
+            }
+
+        }
+
+        void board::printBoard()
+        {
+            printBoardG();
+            cout << endl;
+            printBoardS();
         }
 
 
@@ -113,7 +137,7 @@ namespace ProjectAlpha2{
                     }
                 }
 
-                printBoard(); 
+                printBoardS(); 
             }
 
             else
@@ -148,6 +172,30 @@ namespace ProjectAlpha2{
                 return true;
         }
 
+        void board::isHit(int r, int c)
+        {
+            if(matrix[r][c] == HIT || matrix[r][c] == MISS){            //Teste ob Eingabe korrekt ist also koordinate wurde noch nicht versucht
+                cout << endl << " Input incorrect. Please try again.";
+                shot();
+            }
+
+            if(matrix[r][c] == SHIP){
+                matrix[r][c] = HIT;
+                bool win = winner();
+                if(win){
+                    printBoard();
+                    cout << endl<< "Hit! Continue";
+                    shot();
+                }
+            }
+
+            else{
+                matrix[r][c] = MISS;
+                printBoard();
+                cout<<endl<< "Miss! It's your opponent's turn";
+            }
+        }
+
 
         void board::shot(){
 
@@ -165,8 +213,10 @@ namespace ProjectAlpha2{
             int r = y-1;
             int c = x-1;
 
+            isHit(r, c);
 
-            if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
+
+            /*if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
                 cout<< endl << " Input incorrect. Please try again.";
                 shot();
             }
@@ -193,7 +243,7 @@ namespace ProjectAlpha2{
                 printBoard();
                 cout<<endl<< "Miss! It's your opponent's turn";
                 //Zum anderen Feld wechseln
-            }
+            }*/
 
         }
 
