@@ -4,7 +4,7 @@
 using namespace std;
 namespace ProjectAlpha2{
 
-            board::board() // Erstellt das Board, Funktion vielleicht unnötig
+        board::board() // Erstellt das Spielfeld
         {
             for (int r = 0; r < rows; r++)
             {
@@ -16,22 +16,20 @@ namespace ProjectAlpha2{
         }
 
 
-        void board::printBoardS() //druckt das Board
+        void board::printBoardS() //druckt das Board, worauf die eigenen Schiffe und die Hits und Misses des Gegenspielers abgebildet sind
         {
-            
             for (int r = 0; r < rows; r++)
             {
                 cout<<endl; 
                 for(int c = 0; c < columns; c ++)
                 {
                     cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
-                }
-                
-            } 
-           
+                } 
+            }  
         }
 
-        void board::printBoardG()
+
+        void board::printBoardG() //druckt das Board, wo nur die eigenen Hits und Misses 
         {
             for (int r = 0; r < rows; r++)
             {
@@ -39,17 +37,17 @@ namespace ProjectAlpha2{
                 for (int c = 0; c < columns; c++)
                 {
                     if(matrix[r][c]==SHIP){
-                        cout<<LEER<< " " ;
+                        cout<<LEER<< " " ;   // verdeckt alle mit SHIP gekennzeichneten Stellen
                     }
                     else{
                     cout<< matrix[r][c] << " " ;
                     }
                 }
             }
-
         }
 
-        void board::printBoard()
+
+        void board::printBoard() // druckt beide Boards aus
         {
             printBoardG();
             cout << endl;
@@ -65,7 +63,6 @@ namespace ProjectAlpha2{
                 {
                     return false;
                 }
-
                 for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde
                 {
                     if(matrix[r][c] == SHIP)
@@ -75,14 +72,12 @@ namespace ProjectAlpha2{
                     c = c + 1;
                 }
             }
-
             else
             {
-                if(r+3 > 9)
+                if(r+3 > 9) // Das selbe nur für Y-Achse
                 {
                     return false;
                 }
-
                 for (int i = 0; i < 4; ++i) 
                 {
                     if(matrix[r][c] == SHIP)
@@ -93,9 +88,8 @@ namespace ProjectAlpha2{
                 }
             }
             return true;
-
-            //return true;
         }
+
 
         void board::setShips()
         {
@@ -103,9 +97,9 @@ namespace ProjectAlpha2{
             int y;  // Variable für Row Eingabe
             bool isHorizontal; // Entscheidet in welche Richtung das Ship geht
 
-            cout << endl <<"Enter starting coordinate x: " ; //Abfrage der Anfangskoordinate
+            cout << endl <<"Enter starting coordinate x (1-10): " ; //Abfrage der Anfangskoordinate
             cin >> x ;
-            cout << endl <<"Enter starting coordinate y: " ;
+            cout << endl <<"Enter starting coordinate y (1-10): " ;
             cin >> y;
 
             cout << endl << "Enter Orientation(1 for horizontal,0 for vertical): "; //Abfrage der Richtung
@@ -116,19 +110,16 @@ namespace ProjectAlpha2{
 
             bool canSet = canSetShip (c, r, isHorizontal);
             if(canSet)  //Überprüft ob Eingabe korrekt
-            {
-               
+            { 
                 if(isHorizontal) //Setzt ein horizontales Schiff
                 {
                     for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
                     {
-                    matrix[r][c] = SHIP; // wird durch S gekennzeichnet (muss später entfernt werden)
+                    matrix[r][c] = SHIP; // wird durch S gekennzeichnet 
                     c = c + 1;
                     }
                 }
-                
-
-                else
+                else //Setzt ein vertikales Schiff
                 {
                     for (int i = 0; i < 4; ++i) 
                     {
@@ -136,22 +127,19 @@ namespace ProjectAlpha2{
                     r = r + 1;
                     }
                 }
-
-                printBoardS(); 
+                printBoardS();  // druckt Spielfeld mit seinen eigenen Schiffen aus
             }
-
             else
             {
-                cout<< endl << "Input incorrect. Please try again.";
+                cout<< endl << "Input incorrect. Please try again."; //Erneute eingabe, falls Fehler bei vorheriger Eingabe
                 setShips();
-            }
-            
+            }  
         }
 
 
-        bool board::winner() //Testet, ob alle S(SHIPS) getroffen wurden
+        bool board::winner() //Testet, ob alle S(SHIPS) getroffen wurden 
         {   
-            int h =0;
+            int h =0; // Counter für Anzahl der getroffenen Schiffe
 
             for (int r = 0; r < rows; r++)
             {
@@ -159,7 +147,7 @@ namespace ProjectAlpha2{
                 {
                     if(matrix[r][c]==HIT)
                     { 
-                        h++; 
+                        h++; //Counter wird bei jedem Hitt erhöht
                     }
                 } 
             }  
@@ -167,89 +155,63 @@ namespace ProjectAlpha2{
             { 
                 printBoard();
                 cout<<endl<< "Congratulations, you are the WINNER!"<<endl << "GAMEOVER";
-                return false;
+                return false; //Endet Spiel
             }
-                return true;
+                return true; // true, falls noch kein Sieg
         }
 
-        void board::isHit(int r, int c)
-        {
-            if(matrix[r][c] == HIT || matrix[r][c] == MISS){            //Teste ob Eingabe korrekt ist also koordinate wurde noch nicht versucht
-                cout << endl << " Input incorrect. Please try again.";
-                shot();
-            }
 
-            if(matrix[r][c] == SHIP){
-                matrix[r][c] = HIT;
-                bool win = winner();
-                if(win){
+        void board::isHit(int r, int c) //Überpüft ob Eingabe ein Hit ist
+        {
+            if(matrix[r][c] == HIT || matrix[r][c] == MISS)       //Teste ob Eingabe korrekt ist, also Koordinate wurde nicht schon bereits eingegeben
+            {      
+                cout << endl << " Input incorrect. Please try again.";
+                shot();  // dann neuer Versuch
+            }
+            if(matrix[r][c] == SHIP)  //Überprüft ob Hit ist
+            { 
+                matrix[r][c] = HIT;  // wird als Hit makiert
+                bool noWin = winner(); //überprüft ob Spiel gewonnen wurde
+                if(noWin)
+                {
                     printBoard();
                     cout << endl<< "Hit! Continue";
-                    shot();
+                    shot(); // Spieler ist wieder dran, wenn es ein Hit war
                 }
             }
-
-            else{
-                matrix[r][c] = MISS;
+            else
+            {
+                matrix[r][c] = MISS; //sonst als Miss makiert
                 printBoard();
                 cout<<endl<< "Miss! It's your opponent's turn";
+                // anderer Spieler ist dran
             }
         }
 
 
-        void board::shot(){
-
+        void board::shot()  //Funktion für Angriff
+        { 
             int x;
             int y;
 
-            cout << endl <<"Wage einen Schuss!";
-
-            cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
+            cout << endl <<"Wage einen Schuss!";//Abfrage nach einem Rateversuch
+            cout << endl <<"Enter x coordinate: "; 
             cin >> x;
             cout << endl <<"Enter y coordinate: ";
             cin >> y;
 
-
-            int r = y-1;
+            int r = y-1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
             int c = x-1;
 
             isHit(r, c);
-
-
-            /*if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
-                cout<< endl << " Input incorrect. Please try again.";
-                shot();
-            }
-
-            if(matrix[r][c] == MISS){ //Testet, ob Eingabe korrekt ist
-                cout<< endl << " Input incorrect. Please try again.";
-                shot();
-            }
-
-            if(matrix[r][c] == SHIP) //Überprüft, ob es ein Hit ist
-            {   
-                    matrix[r][c] = HIT;
-                    bool win = winner();
-                    if(win) // Testet, ob alle S (SHIPS) getroffen wurden
-                    { 
-                    printBoard();
-                    cout<<endl<< "Hit! Continue"; 
-                    shot(); // nach einem Hit ein weiterer Rateversuch
-                    }
-            }
-
-            else{
-                matrix[r][c] = MISS;
-                printBoard();
-                cout<<endl<< "Miss! It's your opponent's turn";
-                //Zum anderen Feld wechseln
-            }*/
-
         }
 
-        void printRules(){
-            bool i = false;
-            while(!i){
+
+        void printRules() // Auflistung der Spielregeln
+        {
+            bool i = false; 
+            while(!i)
+            {
                 cout << "\n REGELN SCHIFFE VERSENKEN \n \n";
                 cout << "Gespielt wird auf einem 10x10 Feld. \nJeder Spieler setzt zu Beginn 4 Schiffe. \nDiese nehmen jeweils 4 Felder ein. \n";
                 cout << "Um die Schhiffe zu setzen wird jeweil die x und y Koordinate (1-10) und danach die Richtung (Horizontal oder Vertikal (0, 1)) angegeben. \n";
@@ -263,14 +225,13 @@ namespace ProjectAlpha2{
                 cin >> a;
                 if (a == *"J" || a == *"N"){
                     if(a == *"N"){
-                        i = true;
+                        i = true; 
                     }
                 }
                 else{
-                    throw logic_error("Falsche Eingabe bitte starte das Spiel neu!");
+                    throw logic_error("Falsche Eingabe bitte starte das Spiel neu!"); //Überprüft das nur J und N eingegeben werden
                 }
-
-        }
+            }
         }
 
 
