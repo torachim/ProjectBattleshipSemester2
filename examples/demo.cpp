@@ -32,8 +32,6 @@ using namespace ProjectAlpha2;
         {
             throw logic_error("Verbotene Eingabe bitte Spiel neu starten!");
         }
-        
-        //startGame();
     }
 
 

@@ -40,7 +40,7 @@ private: // Wohin damit ???*/
         }
 
 
-        void printBoard() //druckt das Board
+        void printBoardS() //druckt das Board
         {
 
             for (int r = 0; r < rows; r++)
@@ -53,6 +53,31 @@ private: // Wohin damit ???*/
 
             }
 
+        }
+
+         void printBoardG() //druckt das Board
+        {
+            
+            for (int r = 0; r < rows; r++)
+            {
+                cout<<endl; 
+                for(int c = 0; c < columns; c ++)
+                { 
+                    if(matrix[r][c]==SHIP){
+                        cout<<LEER<< " " ;
+                    }
+                    else{
+                    cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
+                    }
+                }    
+            }  
+        }
+
+        void printBoard()
+        {
+            printBoardG();
+            cout << endl ;
+            printBoardS();
         }
 
 
@@ -95,7 +120,6 @@ Stelle ein Ship gesetzt wurde
             }
             return true;
 
-            //return true;
         }
 
         void setShips()
@@ -137,7 +161,11 @@ später entfernt werden) c = c + 1;
                     }
                 }
 
+<<<<<<< HEAD
                 printBoard();
+=======
+                printBoardS(); 
+>>>>>>> 1e4e2e054ef71e82ff9724302640f8b32c9256e6
             }
 
             else
@@ -217,8 +245,31 @@ Rateversuch cin >> x; cout << endl <<"Enter y coordinate: "; cin >> y;
                 cout<<endl<< "Miss! It's your opponent's turn";
                 //Zum anderen Feld wechseln
             }
+            }
+
+
+        void shot(){
+
+            int x;
+            int y;
+
+            cout << endl <<"Wage einen Schuss!";
+
+            cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
+            cin >> x;
+            cout << endl <<"Enter y coordinate: ";
+            cin >> y;
+
+
+            int r = y-1;
+            int c = x-1;
+
+            isHit(r,c);
 
         }
+
+
+        
 
         void printRules(){
             bool i = false;
@@ -264,9 +315,9 @@ neu!");
                 //Spieler Funktion (pick a player)
                 //2 Boards erstellen
                 setShips();
-                setShips();
-                setShips();
-                setShips();
+                //setShips();
+                //setShips();
+                //setShips();
 
                 // Feld wechseln
                 shot(); // dort wird in der Funktion das Feld gewechselt
