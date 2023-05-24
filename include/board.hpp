@@ -21,6 +21,7 @@ namespace ProjectAlpha2{
     
 
         private: //Wohin damit ???*/
+        void shot();
         const int rows =10 ;
         const int columns =10;
         char matrix [rows][columns]; 
@@ -174,23 +175,7 @@ namespace ProjectAlpha2{
                 return true;
         }
 
-
-        void shot(){
-
-            int x;
-            int y;
-
-            cout << endl <<"Wage einen Schuss!";
-
-            cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
-            cin >> x;
-            cout << endl <<"Enter y coordinate: ";
-            cin >> y;
-
-
-            int r = y-1;
-            int c = x-1;
-
+        void isHit(int r, int c){
 
             if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
                 cout<< endl << " Input incorrect. Please try again.";
@@ -220,8 +205,31 @@ namespace ProjectAlpha2{
                 cout<<endl<< "Miss! It's your opponent's turn";
                 //Zum anderen Feld wechseln
             }
+            }
+
+
+        void shot(){
+
+            int x;
+            int y;
+
+            cout << endl <<"Wage einen Schuss!";
+
+            cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
+            cin >> x;
+            cout << endl <<"Enter y coordinate: ";
+            cin >> y;
+
+
+            int r = y-1;
+            int c = x-1;
+
+            isHit(r,c);
 
         }
+
+
+        
 
         void printRules(){
             bool i = false;
@@ -264,14 +272,16 @@ namespace ProjectAlpha2{
                 //Spieler Funktion (pick a player)
                 //2 Boards erstellen
                 setShips();
-                setShips();
-                setShips();
-                setShips();
+                //setShips();
+                //setShips();
+                //setShips();
 
                 // Feld wechseln
                 shot(); // dort wird in der Funktion das Feld gewechselt
             }
+            else { 
             throw logic_error("Verbotene Eingabe bitte Spiell neu starten!");
+            }
         }
 
    // };
