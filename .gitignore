@@ -2,3 +2,5 @@
 .DS_Store/
 *build/
 *game
+*CmakeLists.txt
+*.cache/clangd/

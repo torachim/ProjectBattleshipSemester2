@@ -20,6 +20,7 @@ public:
   void isHit(int r, int c);
   void shot();
   bool winner();
+  void printRules();
 
 private: // Wohin damit ???*/
   const int rows = 10;

@@ -247,7 +247,7 @@ namespace ProjectAlpha2{
 
         }
 
-        void printRules(){
+        void board::printRules(){
             bool i = false;
             while(!i){
                 cout << "\n REGELN SCHIFFE VERSENKEN \n \n";
