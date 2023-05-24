@@ -25,6 +25,7 @@ namespace ProjectAlpha2{
         const int rows =10 ;
         const int columns =10;
         char matrix [rows][columns]; 
+        //char matrixS [rows][columns]; 
         const char SHIP = 'S';  
         const char HIT = 'H';
         const char MISS ='M';
@@ -44,7 +45,7 @@ namespace ProjectAlpha2{
         }
 
 
-        void printBoard() //druckt das Board
+        void printBoardS() //druckt das Board
         {
             
             for (int r = 0; r < rows; r++)
@@ -54,9 +55,33 @@ namespace ProjectAlpha2{
                 {
                     cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
                 }
-                
             } 
            
+        }
+
+         void printBoardG() //druckt das Board
+        {
+            
+            for (int r = 0; r < rows; r++)
+            {
+                cout<<endl; 
+                for(int c = 0; c < columns; c ++)
+                { 
+                    if(matrix[r][c]==SHIP){
+                        cout<<LEER<< " " ;
+                    }
+                    else{
+                    cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
+                    }
+                }    
+            }  
+        }
+
+        void printBoard()
+        {
+            printBoardG();
+            cout << endl ;
+            printBoardS();
         }
 
 
@@ -97,7 +122,6 @@ namespace ProjectAlpha2{
             }
             return true;
 
-            //return true;
         }
 
         void setShips()
@@ -140,7 +164,7 @@ namespace ProjectAlpha2{
                     }
                 }
 
-                printBoard(); 
+                printBoardS(); 
             }
 
             else
