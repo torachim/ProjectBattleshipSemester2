@@ -208,13 +208,13 @@ namespace ProjectAlpha2{
         void printRules(){
             bool i = false;
             while(!i){
-                cout << "REGELN SCHIFFE VERSENKEN \n \n";
-                cout << "Gespielt wird auf einem 10x10 Feld. \n Jeder Spieler setzt zu Beginn 4 Schiffe \n Diese nehmen jeweils 4 Felder ein \n";
-                cout << "Um die Schhiffe zu setzen wird jeweil die x und y Koordinate (1-10) und danach die Richtung (Horizontal oder Vertikal (0, 1)) angegeben \n";
-                cout << "Nachdem die Schiffe gesetzt wurden geht es darum als erster Spiele alle Schiffe des Gegners zu zerstören \n";
-                cout << "Dazu werden auch wieder Koordinaten (1-10) angegeben um eines der vier Teile eines Schiffes zu zerstören \n";
-                cout << "Landet man einen Treffer darf man nochmal schießen \n Wenn man nicht trifft ist der Gegner mit schießen dran \n";
-                cout << "Treffer werden auf der Karte mit H Misses mit M gekennzeichnet \n Eine Meldung das man ein Schiff zerstört hat gibt es nicht eine extra Herausforderung \n";
+                cout << "\n REGELN SCHIFFE VERSENKEN \n \n";
+                cout << "Gespielt wird auf einem 10x10 Feld. \nJeder Spieler setzt zu Beginn 4 Schiffe. \nDiese nehmen jeweils 4 Felder ein. \n";
+                cout << "Um die Schhiffe zu setzen wird jeweil die x und y Koordinate (1-10) und danach die Richtung (Horizontal oder Vertikal (0, 1)) angegeben. \n";
+                cout << "Nachdem die Schiffe gesetzt wurden geht es darum als erster Spiele alle Schiffe des Gegners zu zerstören. \n";
+                cout << "Dazu werden auch wieder Koordinaten (1-10) angegeben um eines der vier Teile eines Schiffes zu zerstören. \n";
+                cout << "Landet man einen Treffer darf man nochmal schießen. \nWenn man nicht trifft ist der Gegner mit schießen dran. \n";
+                cout << "Treffer werden auf der Karte mit H Misses mit M gekennzeichnet. \nEine Meldung das man ein Schiff zerstört hat gibt es nicht eine extra Herausforderung. \n";
                 cout << "Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt und beendet das Spiel! \n";
                 cout << "Willst du die Regeln nochmal lesen? J/N"<<endl;
                 char a;
