@@ -96,7 +96,7 @@ namespace ProjectAlpha2{
             }
             return true;
 
-            return true;
+            //return true;
         }
 
         void setShips()
@@ -180,13 +180,17 @@ namespace ProjectAlpha2{
             int x;
             int y;
 
+            cout << endl <<"Wage einen Schuss!";
+
             cout << endl <<"Enter x coordinate: "; //Abfrage nach einem Rateversuch
             cin >> x;
             cout << endl <<"Enter y coordinate: ";
             cin >> y;
 
+
             int r = y-1;
             int c = x-1;
+
 
             if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
                 cout<< endl << " Input incorrect. Please try again.";
@@ -218,21 +222,56 @@ namespace ProjectAlpha2{
             }
 
         }
+
+        void printRules(){
+            bool i = false;
+            while(!i){
+                cout << "REGELN SCHIFFE VERSENKEN \n \n";
+                cout << "Gespielt wird auf einem 10x10 Feld. \n Jeder Spieler setzt zu Beginn 4 Schiffe \n Diese nehmen jeweils 4 Felder ein \n";
+                cout << "Um die Schhiffe zu setzen wird jeweil die x und y Koordinate (1-10) und danach die Richtung (Horizontal oder Vertikal (0, 1)) angegeben \n";
+                cout << "Nachdem die Schiffe gesetzt wurden geht es darum als erster Spiele alle Schiffe des Gegners zu zerstören \n";
+                cout << "Dazu werden auch wieder Koordinaten (1-10) angegeben um eines der vier Teile eines Schiffes zu zerstören \n";
+                cout << "Landet man einen Treffer darf man nochmal schießen \n Wenn man nicht trifft ist der Gegner mit schießen dran \n";
+                cout << "Treffer werden auf der Karte mit H Misses mit M gekennzeichnet \n Eine Meldung das man ein Schiff zerstört hat gibt es nicht eine extra Herausforderung \n";
+                cout << "Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt und beendet das Spiel! \n";
+                cout << "Willst du die Regeln nochmal lesen? J/N"<<endl;
+                char a;
+                cin >> a;
+                if (a == *"J" || a == *"N"){
+                    if(a == *"N"){
+                        i = true;
+                    }
+                }
+                else{
+                    throw logic_error("Falsche Eingabe bitte starte das Spiel neu!");
+                }
+
+        }
+        }
          
 
         void startGame()
         {
-            cout<<"START THE GAME:"<<endl; 
-            board();
-            //Spieler Funktion (pick a player)
-            //2 Boards erstellen
-            setShips();
-            setShips();
-            setShips();
-            setShips();
+            cout <<"WILLKOMMEN BEI SCHIFFEVERSENKEN"<<endl;
+            cout <<"WILLST DU DIR NOCMAL DIE REGELN ANSCHAUEN? J/N"<<endl;
+            char a;
+            cin >> a;
+            if (a == *"J" || a == *"N"){
+                if(a == *"J"){
+                    printRules();
+                }
+                board();
+                //Spieler Funktion (pick a player)
+                //2 Boards erstellen
+                setShips();
+                setShips();
+                setShips();
+                setShips();
 
-            // Feld wechseln
-            shot(); // dort wird in der Funktion das Feld gewechselt
+                // Feld wechseln
+                shot(); // dort wird in der Funktion das Feld gewechselt
+            }
+            throw logic_error("Verbotene Eingabe bitte Spiell neu starten!");
         }
 
    // };
