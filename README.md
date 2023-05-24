@@ -19,4 +19,4 @@ Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt.
 
 ## UML battleship
 
-/projekt2torgesnehpreet/UML/uml battleships.png
+/projekt2torgesnehpreet/UML/UML battleship.png
