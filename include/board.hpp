@@ -8,7 +8,7 @@ using namespace std;
 
 namespace ProjectAlpha2{
 
-    //class board {//: public boardInterface {
+    //class Board : public BoardInterface {
 
         /*public:
         void board();
@@ -16,11 +16,11 @@ namespace ProjectAlpha2{
         void setShips();
         bool canSetShip();
         void shot();
-        void winner();
-        */
+        bool winner();
+        
     
 
-        //private: //Wohin damit ???
+        private: //Wohin damit ???*/
         const int rows =10 ;
         const int columns =10;
         char matrix [rows][columns]; 
@@ -45,14 +45,15 @@ namespace ProjectAlpha2{
 
         void printBoard() //druckt das Board
         {
-
+            
             for (int r = 0; r < rows; r++)
             {
+                cout<<endl; 
                 for(int c = 0; c < columns; c ++)
                 {
                     cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
                 }
-                cout<<endl; 
+                
             } 
            
         }
@@ -144,21 +145,33 @@ namespace ProjectAlpha2{
             else
             {
                 cout<< endl << "Input incorrect. Please try again.";
-                void setShips();
+                setShips();
             }
             
         }
 
 
-        void winner() //Testet, ob alle S(SHIPS) getroffen wurden
-        {
-            int h;
-            h = h+1; // Counter für alle Hits eines Spielers
+        bool winner() //Testet, ob alle S(SHIPS) getroffen wurden
+        {   
+            int h =0;
 
-            if(h==16){ //Überprüft ob maximal Anzahl von Hits erreicht wurden, also alle Schiffe vollständig getroffen wurden
-                cout<<endl<< "Congratulation, you are the Winner!"<<endl << "GAMEOVER";
-                //startGame(); // startet nächste Runde
+            for (int r = 0; r < rows; r++)
+            {
+                for(int c = 0; c < columns; c ++)
+                {
+                    if(matrix[r][c]==HIT)
+                    { 
+                        h++; 
+                    }
+                } 
+            }  
+            if(h==16)    //Überprüft ob maximal Anzahl von Hits erreicht wurden, also alle Schiffe vollständig getroffen wurden
+            { 
+                printBoard();
+                cout<<endl<< "Congratulations, you are the WINNER!"<<endl << "GAMEOVER";
+                return false;
             }
+                return true;
         }
 
 
@@ -172,8 +185,8 @@ namespace ProjectAlpha2{
             cout << endl <<"Enter y coordinate: ";
             cin >> y;
 
-            int r = y;
-            int c = x;
+            int r = y-1;
+            int c = x-1;
 
             if(matrix[r][c] == HIT){ //Testet, ob Eingabe korrekt ist
                 cout<< endl << " Input incorrect. Please try again.";
@@ -186,12 +199,15 @@ namespace ProjectAlpha2{
             }
 
             if(matrix[r][c] == SHIP) //Überprüft, ob es ein Hit ist
-            {
-                matrix[r][c] = HIT;
-                printBoard();
-                winner(); // Testet, ob alle S (SHIPS) getroffen wurden
-                cout<<endl<< "Hit! Continue"; 
-                shot(); // nach einem Hit ein weiterer Rateversuch
+            {   
+                    matrix[r][c] = HIT;
+                    bool win = winner();
+                    if(win) // Testet, ob alle S (SHIPS) getroffen wurden
+                    { 
+                    printBoard();
+                    cout<<endl<< "Hit! Continue"; 
+                    shot(); // nach einem Hit ein weiterer Rateversuch
+                    }
             }
 
             else{
