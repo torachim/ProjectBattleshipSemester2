@@ -212,6 +212,7 @@ namespace ProjectAlpha2{
             bool i = false; 
             while(!i)
             {
+
                 cout << "\n REGELN SCHIFFE VERSENKEN \n \n";
                 cout << "Gespielt wird auf einem 10x10 Feld. \nJeder Spieler setzt zu Beginn 4 Schiffe. \nDiese nehmen jeweils 4 Felder ein. \n";
                 cout << "Um die Schhiffe zu setzen wird jeweil die x und y Koordinate (1-10) und danach die Richtung (Horizontal oder Vertikal (0, 1)) angegeben. \n";

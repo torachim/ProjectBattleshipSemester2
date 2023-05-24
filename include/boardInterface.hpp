@@ -14,6 +14,7 @@ namespace ProjectAlpha2 { //???
             virtual void isHit(int r, int c) = 0;
             virtual void shot() = 0;
             virtual bool winner() = 0; 
+            virtual void printRules() = 0;
         
     } ;
 }
