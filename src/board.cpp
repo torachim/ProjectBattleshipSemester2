@@ -1,6 +1,8 @@
 #include "../include/board.hpp"
 #include <iostream>
 
+//Unbedingt noch auf mehr Ausnahmen testen und diese beheben. Fuehrt sonst zu Speicher Fehlern
+
 using namespace std;
 namespace ProjectAlpha2{
 
@@ -99,12 +101,20 @@ namespace ProjectAlpha2{
 
             cout << endl <<"Enter starting coordinate x (1-10): " ; //Abfrage der Anfangskoordinate
             cin >> x ;
+            if(x > 10 || x < 1){
+                cout << endl << "Input incorrect! Please try again!";
+                setShips();
+            }
             cout << endl <<"Enter starting coordinate y (1-10): " ;
             cin >> y;
+            if(y > 10 || y < 1){
+                cout << endl << "Input incorret! Please try again!";
+                setShips();
+            }
 
             cout << endl << "Enter Orientation(1 for horizontal,0 for vertical): "; //Abfrage der Richtung
             cin >> isHorizontal;
-
+        
             int c = x -1 ; //  da Index eigentlich bei null beginnt
             int r = y -1 ;
 
@@ -207,7 +217,7 @@ namespace ProjectAlpha2{
         }
 
 
-        void printRules() // Auflistung der Spielregeln
+        void board::printRules() // Auflistung der Spielregeln
         {
             bool i = false; 
             while(!i)
