@@ -6,6 +6,7 @@ Wir planen eine Implementierung des Spieles Schiffe versenken. Hierbei spielen j
 zwei Spieler gegeneinander. Diese legen auf ihr Feld zuerst die Lage ihrer Schiffe fest ehe sie versuchen die Schiffe des anderen zu zerstören.
 Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt.
 
+
 ## Checkliste
 
 - [ ] Zeitplan anlgen
@@ -18,7 +19,7 @@ Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt.
 
 ## UML battleship
 
-/projekt2torgesnehpreet/UML/uml battleships.png
+/projekt2torgesnehpreet/UML/UML battleship.png
 
 ## Regeln
 
@@ -37,3 +38,4 @@ Funktionen:
 - [ ] isHit -> Prueft ob der Schuss erlaupt ist also ob der Schuss nicht auf ein bereits geschossenes Feld geht und ob er ein Treffer war
 - [ ] winner -> Prueft ob man nach einem Treffer schon gewonnen hat oder ob man nochmal schießen darf
 - [ ] printRules -> Druckt auf Wunsch die Regeln des Spiels
+
