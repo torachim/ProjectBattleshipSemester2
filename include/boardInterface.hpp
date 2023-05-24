@@ -3,15 +3,15 @@
 
 namespace ProjectAlpha2 { //???
 
-    class boardInterface{
+    class BoardInterface{
 
         public:
-            virtual void Board();
+            virtual void board();
             virtual void printBoard();
             virtual void setShips();
             virtual bool canSetShip();
             virtual void shot();
-            virtual void winner();
+            virtual bool winner();
         
     } ;
 }
