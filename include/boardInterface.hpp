@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-namespace ProjectAlpha2 { //???
+namespace ProjectAlpha2 { 
 
     class boardInterface{
 

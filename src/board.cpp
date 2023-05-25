@@ -51,9 +51,9 @@ namespace ProjectAlpha2{
 
         void board::printBoard() // druckt beide Boards aus
         {
-            printBoardG();
-            cout << endl;
             printBoardS();
+            cout << endl;
+            printBoardG();
         }
 
 
@@ -65,7 +65,7 @@ namespace ProjectAlpha2{
                 {
                     return false;
                 }
-                for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde
+                for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde // AUSNAHME
                 {
                     if(matrix[r][c] == SHIP)
                     {
