@@ -14,6 +14,10 @@ namespace ProjectAlpha2{
             void shoot ();
             void setShips ();
             std::string getName();
+            void setEnBoard (board Enemyboard);
+            board getSBoard();
+            board getLBoard();
+            
         
         private:
             std::string Name;

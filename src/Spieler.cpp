@@ -82,5 +82,17 @@ namespace ProjectAlpha2{
             geg_brett -> isHit(r, c);
         }
 
+        void Spieler::setEnBoard(board EnemyBoard){
+            geg_brett = make_shared<board>(EnemyBoard);
+        }
+
+        board Spieler::getSBoard(){
+            return boardS;
+        }
+
+        board Spieler::getLBoard(){
+            return boardL;
+        }
+
 }
 
