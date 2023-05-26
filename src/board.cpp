@@ -92,7 +92,7 @@ namespace ProjectAlpha2{
             return true;
         }
 
-
+        //Bereits in der Spielerklasse implementiert kommt später noch raus
         void board::setShips()
         {
             int x;  // Variable für Column Eingabe
@@ -243,6 +243,10 @@ namespace ProjectAlpha2{
                     throw logic_error("Falsche Eingabe bitte starte das Spiel neu!"); //Überprüft das nur J und N eingegeben werden
                 }
             }
+        }
+
+        void board::Schiffsetzen(int r, int c){
+            matrix[r][c] = SHIP;
         }
 
 

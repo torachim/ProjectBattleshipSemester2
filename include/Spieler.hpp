@@ -11,14 +11,14 @@ namespace ProjectAlpha2{
 
         public:
             Spieler(board boardS_, board boardL_, std::string Name_);
-            void shoot (int x, int y);
+            void shoot ();
             void setShips ();
             std::string getName();
         
         private:
             std::string Name;
-            board boardS;           //Board mit Schiffen
-            board boardL;           //Board ohne Schiffe
+            board boardS;                           //Board mit Schiffen
+            board boardL;                           //Board ohne Schiffe
             std::shared_ptr<board> geg_brett;       //Pointer welcher auf das Gegnerische Brett zeigt
 
     };

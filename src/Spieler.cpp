@@ -66,5 +66,21 @@ namespace ProjectAlpha2{
             }  
         }
 
+        void Spieler::shoot(){
+            int x;
+            int y;
+
+            cout << endl <<"Wage einen Schuss!";//Abfrage nach einem Rateversuch
+            cout << endl <<"Enter x coordinate: "; 
+            cin >> x;
+            cout << endl <<"Enter y coordinate: ";
+            cin >> y;
+
+            int r = y-1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
+            int c = x-1;
+
+            geg_brett -> isHit(r, c);
+        }
+
 }
 
