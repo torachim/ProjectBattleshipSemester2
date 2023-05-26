@@ -21,6 +21,7 @@ public:
   void shot();
   bool winner();
   void printRules();
+  void Schiffsetzen(int r, int c);
 
 private: 
   const int rows = 10;

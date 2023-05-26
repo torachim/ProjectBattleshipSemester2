@@ -15,6 +15,7 @@ namespace ProjectAlpha2 {
             virtual void shot() = 0;
             virtual bool winner() = 0; 
             virtual void printRules() = 0;
+            virtual void Schiffsetzen(int c, int r) = 0;
         
     } ;
 }
