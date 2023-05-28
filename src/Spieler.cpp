@@ -7,6 +7,13 @@
 using namespace std;
 namespace ProjectAlpha2{
 
+    /**
+     * @brief Construct a new Spieler:: Spieler object
+     * 
+     * @param boardS_ Brett welches die Schiffe dieses Spieler enthalten soll
+     * @param boardL_ Brett welches die von dem Spieler gemachten Schuesse enthalten soll
+     * @param Name_  Name des Spielers
+     */
     Spieler::Spieler(board boardS_, board boardL_, string Name_) : boardS(boardS_), boardL(boardL_), Name(Name_)
     {
     }
@@ -15,6 +22,10 @@ namespace ProjectAlpha2{
         return Name;
     }
 
+    /**
+     * @brief Funktion welche es dem Spieler ermöglicht Schiffe zu setzen
+     * 
+     */
     void Spieler::setShips(){
 
             int x;  // Variable für Column Eingabe
@@ -47,14 +58,14 @@ namespace ProjectAlpha2{
                 {
                     for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
                     {
-                    boardS.Schiffsetzen(r, c);
+                    boardS.Schiffsetzen(r, c);  //Hilfsfunktion des Schiffbrettes wird aufgerufen um das entsprechende Schiff zu setzen
                     }
                 }
                 else //Setzt ein vertikales Schiff
                 {
                     for (int i = 0; i < 4; ++i) 
                     {
-                    boardS.Schiffsetzen(r, c);
+                    boardS.Schiffsetzen(r, c);  //Hilfsfunktion des Schiffbrettes wird aufgerufen um das entsprechende Schiff zu setzen
                     }
                 }
                 boardS.printBoardS();  // druckt Spielfeld mit seinen eigenen Schiffen aus
@@ -66,6 +77,10 @@ namespace ProjectAlpha2{
             }  
         }
 
+        /**
+         * @brief Funktion mit welcher ein Spieler schießen kann
+         * 
+         */
         void Spieler::shoot(){
             int x;
             int y;
@@ -79,7 +94,7 @@ namespace ProjectAlpha2{
             int r = y-1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
             int c = x-1;
 
-            geg_brett -> isHit(r, c);
+            geg_brett -> isHit(r, c);  //Auf dem Gegnerbrett wird geschaut ob ein Treffer gelandet wurde
         }
 
         void Spieler::setEnBoard(board EnemyBoard){
