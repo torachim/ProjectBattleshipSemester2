@@ -1,5 +1,4 @@
 #include "../include/Spieler.hpp"
-#include "board.cpp"
 #include "../include/board.hpp"
 #include <iostream>
 #include <memory>
@@ -16,6 +15,7 @@ namespace ProjectAlpha2{
      */
     Spieler::Spieler(board boardS_, board boardL_, string Name_) : boardS(boardS_), boardL(boardL_), Name(Name_)
     {
+        isWinner = false;
     }
 
     string Spieler::getName(){
@@ -58,17 +58,19 @@ namespace ProjectAlpha2{
                 {
                     for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
                     {
-                    boardS.Schiffsetzen(r, c);  //Hilfsfunktion des Schiffbrettes wird aufgerufen um das entsprechende Schiff zu setzen
+                    boardS.Schiffsetzen(r, c);
+                    c = c + 1;  //Hilfsfunktion des Schiffbrettes wird aufgerufen um das entsprechende Schiff zu setzen
                     }
                 }
                 else //Setzt ein vertikales Schiff
                 {
                     for (int i = 0; i < 4; ++i) 
                     {
-                    boardS.Schiffsetzen(r, c);  //Hilfsfunktion des Schiffbrettes wird aufgerufen um das entsprechende Schiff zu setzen
+                    boardS.Schiffsetzen(r, c);
+                    r = r + 1;  //Hilfsfunktion des Schiffbrettes wird aufgerufen um das entsprechende Schiff zu setzen
                     }
                 }
-                boardS.printBoardS();  // druckt Spielfeld mit seinen eigenen Schiffen aus
+                boardS.printBoard();  // druckt Spielfeld mit seinen eigenen Schiffen aus
             }
             else
             {
@@ -91,10 +93,24 @@ namespace ProjectAlpha2{
             cout << endl <<"Enter y coordinate: ";
             cin >> y;
 
-            int r = y-1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
-            int c = x-1;
+            int r = y - 1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
+            int c = x - 1;
+            
 
-            geg_brett -> isHit(r, c);  //Auf dem Gegnerbrett wird geschaut ob ein Treffer gelandet wurde
+            if(geg_brett ->isHit(r, c) == true){
+                boardL.setH(r, c);
+                boardL.printBoard();
+                winnercontrol();
+                if(getwinner() == false){
+                    shoot();
+                }
+            }  //Auf dem Gegnerbrett wird geschaut ob ein Treffer gelandet wurde
+
+            else{
+                boardL.setM(r, c);
+                boardL.printBoard();
+            }
+            
         }
 
         void Spieler::setEnBoard(board EnemyBoard){
@@ -107,6 +123,17 @@ namespace ProjectAlpha2{
 
         board Spieler::getLBoard(){
             return boardL;
+        }
+
+        void Spieler::winnercontrol(){
+            bool a = boardL.winner();
+            if(a == false){
+                isWinner = true;
+            }
+        }
+
+        bool Spieler::getwinner(){
+            return isWinner;
         }
 
 }

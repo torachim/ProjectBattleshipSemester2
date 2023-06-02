@@ -1,6 +1,8 @@
 
 //#include "../src/board.cpp"
 #include "../include/board.hpp"
+#include "../include/Spieler.hpp"
+#include "../include/game.hpp"
 #include <iostream>
 #include<string>
 
@@ -11,8 +13,19 @@ using namespace ProjectAlpha2;
 
     int main()
     {
+        board m;
+        board l;
+        board k;
+        board n;
+
+        Spieler t = Spieler(m , l, "Torge");
+        Spieler p = Spieler(k, n, "Gegner");
+
+        Game g = Game (t, p);
+
+        g.startgame();
         
-        std::cout <<"WILLKOMMEN BEI SCHIFFEVERSENKEN"<<endl;
+        /*std::cout <<"WILLKOMMEN BEI SCHIFFEVERSENKEN"<<endl;
         std::cout <<"WILLST DU DIR NOCMAL DIE REGELN ANSCHAUEN? J/N"<<endl;
         char a;
         cin >> a;
@@ -34,7 +47,7 @@ using namespace ProjectAlpha2;
         else
         {
             throw logic_error("Verbotene Eingabe bitte Spiel neu starten!");
-        }
+        }*/
     }
 
 

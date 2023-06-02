@@ -12,16 +12,18 @@ class board : public boardInterface {
 
 public:
   board();
-  void printBoardS();
-  void printBoardG();
+  //void printBoardS();
+  //void printBoardG();
   void printBoard();
-  void setShips();
+  //void setShips();
   bool canSetShip(int c, int r, bool isHorizontal);
-  void isHit(int r, int c);
-  void shot();
+  bool isHit(int r, int c);
+  //void shot();
   bool winner();
-  void printRules();
+  //void printRules();
   void Schiffsetzen(int r, int c);
+  void setH(int r, int c);
+  void setM(int r, int c);
 
 private: 
   const int rows = 10;
@@ -30,6 +32,8 @@ private:
   const char SHIP = 'S';
   const char HIT = 'H';
   const char MISS = 'M';
+  const char DESTROYED = 'X';
+  const char NOHIT = 'O';
   const char LEER = '*';
 };
 }
