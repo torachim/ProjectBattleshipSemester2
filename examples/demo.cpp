@@ -20,7 +20,7 @@ using namespace ProjectAlpha2;
 
         Spieler t = Spieler(m , l, "Torge");
         Spieler p = Spieler(k, n, "Gegner");
-
+        
         Game g = Game (t, p);
 
         g.startgame();

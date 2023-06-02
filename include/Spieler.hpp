@@ -17,8 +17,8 @@ namespace ProjectAlpha2{
             void setEnBoard (board Enemyboard);                             //Funktion um das Gegnerboard festzulegen
             board getSBoard();                                              //Funktion welche das Board mit den Schiffen zurueckgibt
             board getLBoard();                                              //Funktion welche das Board ohne Schiffe zurueckgibt
-            void winnercontrol();
-            bool getwinner();
+            void winnercontrol();                                           //Funktion welche ueberprueft ob der Spieler bereits gewonnen hat
+            bool getwinner();                                               //Gibt die Variable iswinner zurueck
             
         
         private:
@@ -26,7 +26,7 @@ namespace ProjectAlpha2{
             board boardS;                           //Board mit Schiffen
             board boardL;                           //Board ohne Schiffe
             std::shared_ptr<board> geg_brett;       //Pointer welcher auf das Gegnerische Brett zeigt
-            bool isWinner;
+            bool isWinner;                          //Variable false zum Spielstart true wenn der Spieler gewonnen hat
 
     };
 }

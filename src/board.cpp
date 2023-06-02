@@ -6,6 +6,11 @@
 using namespace std;
 namespace ProjectAlpha2{
 
+
+        /**
+         * @brief Construct a new board::board object
+         * leere Matrix wird erstellt
+         */
         board::board() // Erstellt das Spielfeld
         {
             for (int r = 0; r < rows; r++)
@@ -17,7 +22,10 @@ namespace ProjectAlpha2{
             }
         }
 
-
+        /**
+         * @brief Funktion welche das Brett druckt
+         * 
+         */
         void board::printBoard() //druckt das Board, worauf die eigenen Schiffe und die Hits und Misses des Gegenspielers abgebildet sind
         {
             for (int r = 0; r < rows; r++)
@@ -27,10 +35,19 @@ namespace ProjectAlpha2{
                 {
                     cout<< matrix[r][c] << " " ; //druckt jedes Kästchen einzeln
                 } 
-            }  
+            }
+            cout << endl;  
         }
 
-
+        /**
+         * @brief Funktion welche ueberprueft ob ein gegebenes Schiff gesetzt werden kann
+         * 
+         * @param c x-Koordinate an welcher das Schiff anfaengt
+         * @param r y-Koordinate an welcher das Schiff anfaengt
+         * @param isHorizontal Angabe ob das Schiff Horizontal oder Vertikal ist
+         * @return true Schiff kann gesetzt werden
+         * @return false Schiff kann nicht gesetzt werden
+         */
         bool board::canSetShip(int c, int r, bool isHorizontal)  //Überprüft, ob Eingabe korrekt ist
         {
             if(isHorizontal)
@@ -66,7 +83,12 @@ namespace ProjectAlpha2{
             return true;
         }
 
-
+        /**
+         * @brief Funktion welche angibt ob über das Brett bereits gewonnen wurde
+         * 
+         * @return true Alle Hits gesetzt der Spieler hat gewonnen
+         * @return false Noch nicht alle Hits gesetzt der Spieler hat noch nicht gewonnen
+         */
         bool board::winner() //Testet, ob alle S(SHIPS) getroffen wurden 
         {   
             int h =0; // Counter für Anzahl der getroffenen Schiffe
@@ -88,7 +110,14 @@ namespace ProjectAlpha2{
                 return true; // true, falls noch kein Sieg
         }
 
-
+        /**
+         * @brief Funktion welche ueberprueft ob ein angegebener Schuss ein Schiff getroffen hat
+         * Außerdem Markiert die Funktion auch auf dem Gegnerbrett ob ein Schiff zerstoert wurde oder die Bombe nicht getroffen hat
+         * @param r x-Koordinate
+         * @param c y-Koordinate
+         * @return true Schiffsteil wurde getroffen
+         * @return false Kein Schiffsteil wurde getroffen
+         */
         bool board::isHit(int r, int c) //Überpüft ob Eingabe ein Hit ist
         {
             printBoard();
@@ -99,13 +128,13 @@ namespace ProjectAlpha2{
             }
             if(matrix[r][c] == SHIP)  //Überprüft ob Hit ist
             { 
-                matrix[r][c] = DESTROYED;  // wird als Hit makiert
+                matrix[r][c] = DESTROYED;  // wird als Kaputt makiert
                     cout << endl<< "Hit! Continue";
                     return true;
             }
             else
             {
-                matrix[r][c] = NOHIT; //sonst als Miss makiert
+                matrix[r][c] = NOHIT; //sonst als Nohit makiert
                 cout<<endl<< "Miss! It's your opponent's turn";
                 return false;
                 // anderer Spieler ist dran
@@ -123,10 +152,22 @@ namespace ProjectAlpha2{
             matrix[r][c] = SHIP;
         }
 
+        /**
+         * @brief Hilfsfunktion um einen Hit im Board zu markieren
+         * 
+         * @param r x-Koordinate
+         * @param c y-Koordinate
+         */
         void board::setH(int r, int c){
             matrix[r][c] = HIT;
         }
 
+        /**
+         * @brief Hilfsfunktion um einen Miss im Board zu markieren
+         * 
+         * @param r x-Koordinate
+         * @param c y-Koordinate
+         */
         void board::setM(int r, int c){
             matrix[r][c] = MISS;
         }
