@@ -12,15 +12,10 @@ class board : public boardInterface {
 
 public:
   board();
-  //void printBoardS();
-  //void printBoardG();
   void printBoard();
-  //void setShips();
   bool canSetShip(int c, int r, bool isHorizontal);
   bool isHit(int r, int c);
-  //void shot();
   bool winner();
-  //void printRules();
   void Schiffsetzen(int r, int c);
   void setH(int r, int c);
   void setM(int r, int c);

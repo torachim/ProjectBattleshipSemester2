@@ -31,32 +31,6 @@ namespace ProjectAlpha2{
         }
 
 
-        /*void board::printBoardG() //druckt das Board, wo nur die eigenen Hits und Misses 
-        {
-            for (int r = 0; r < rows; r++)
-            {
-                cout<<endl;
-                for (int c = 0; c < columns; c++)
-                {
-                    if(matrix[r][c]==SHIP){
-                        cout<<LEER<< " " ;   // verdeckt alle mit SHIP gekennzeichneten Stellen
-                    }
-                    else{
-                    cout<< matrix[r][c] << " " ;
-                    }
-                }
-            }
-        }*/
-
-
-       /* void board::printBoard() // druckt beide Boards aus
-        {
-            printBoardS();
-            cout << endl;
-            printBoardG();
-        }*/
-
-
         bool board::canSetShip(int c, int r, bool isHorizontal)  //Überprüft, ob Eingabe korrekt ist
         {
             if(isHorizontal)
@@ -92,60 +66,6 @@ namespace ProjectAlpha2{
             return true;
         }
 
-        //Bereits in der Spielerklasse implementiert kommt später noch raus
-        /*void board::setShips()
-        {
-            int x;  // Variable für Column Eingabe
-            int y;  // Variable für Row Eingabe
-            bool isHorizontal; // Entscheidet in welche Richtung das Ship geht
-
-            cout << endl <<"Enter starting coordinate x (1-10): " ; //Abfrage der Anfangskoordinate
-            cin >> x ;
-            if(x > 10 || x < 1){
-                cout << endl << "Input incorrect! Please try again!";
-                setShips();
-            }
-            cout << endl <<"Enter starting coordinate y (1-10): " ;
-            cin >> y;
-            if(y > 10 || y < 1){
-                cout << endl << "Input incorret! Please try again!";
-                setShips();
-            }
-
-            cout << endl << "Enter Orientation(1 for horizontal,0 for vertical): "; //Abfrage der Richtung
-            cin >> isHorizontal;
-        
-            int c = x -1 ; //  da Index eigentlich bei null beginnt
-            int r = y -1 ;
-
-            bool canSet = canSetShip (c, r, isHorizontal);
-            if(canSet)  //Überprüft ob Eingabe korrekt
-            { 
-                if(isHorizontal) //Setzt ein horizontales Schiff
-                {
-                    for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
-                    {
-                    matrix[r][c] = SHIP; // wird durch S gekennzeichnet 
-                    c = c + 1;
-                    }
-                }
-                else //Setzt ein vertikales Schiff
-                {
-                    for (int i = 0; i < 4; ++i) 
-                    {
-                    matrix[r][c] = SHIP;
-                    r = r + 1;
-                    }
-                }
-                printBoardS();  // druckt Spielfeld mit seinen eigenen Schiffen aus
-            }
-            else
-            {
-                cout<< endl << "Input incorrect. Please try again."; //Erneute eingabe, falls Fehler bei vorheriger Eingabe
-                setShips();
-            }  
-        }*/
-
 
         bool board::winner() //Testet, ob alle S(SHIPS) getroffen wurden 
         {   
@@ -163,8 +83,6 @@ namespace ProjectAlpha2{
             }  
             if(h==16)    //Überprüft ob maximal Anzahl von Hits erreicht wurden, also alle Schiffe vollständig getroffen wurden
             { 
-                //printBoard();
-                //cout<<endl<< "Congratulations, you are the WINNER!"<<endl << "GAMEOVER";
                 return false; //Endet Spiel
             }
                 return true; // true, falls noch kein Sieg
@@ -178,72 +96,22 @@ namespace ProjectAlpha2{
             {      
                 cout << endl << " Input incorrect. Please try again.";
                 return true;
-                //shot();  // dann neuer Versuch
             }
             if(matrix[r][c] == SHIP)  //Überprüft ob Hit ist
             { 
                 matrix[r][c] = DESTROYED;  // wird als Hit makiert
-                    //printBoard();
                     cout << endl<< "Hit! Continue";
                     return true;
-                    //shot(); // Spieler ist wieder dran, wenn es ein Hit war
             }
             else
             {
                 matrix[r][c] = NOHIT; //sonst als Miss makiert
-                //printBoard();
                 cout<<endl<< "Miss! It's your opponent's turn";
                 return false;
                 // anderer Spieler ist dran
             }
         }
 
-        //Bereits in der Spielerklasse implementiert kann noch raus
-        /*void board::shot()  //Funktion für Angriff
-        { 
-            int x;
-            int y;
-
-            cout << endl <<"Wage einen Schuss!";//Abfrage nach einem Rateversuch
-            cout << endl <<"Enter x coordinate: "; 
-            cin >> x;
-            cout << endl <<"Enter y coordinate: ";
-            cin >> y;
-
-            int r = y-1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
-            int c = x-1;
-
-            isHit(r, c);
-        }*/
-
-
-      /*  void board::printRules() // Auflistung der Spielregeln
-        {
-            bool i = false; 
-            while(!i)
-            {
-
-                cout << "\n REGELN SCHIFFE VERSENKEN \n \n";
-                cout << "Gespielt wird auf einem 10x10 Feld. \nJeder Spieler setzt zu Beginn 4 Schiffe. \nDiese nehmen jeweils 4 Felder ein. \n";
-                cout << "Um die Schhiffe zu setzen wird jeweil die x und y Koordinate (1-10) und danach die Richtung (Horizontal oder Vertikal (0, 1)) angegeben. \n";
-                cout << "Nachdem die Schiffe gesetzt wurden geht es darum als erster Spiele alle Schiffe des Gegners zu zerstören. \n";
-                cout << "Dazu werden auch wieder Koordinaten (1-10) angegeben um eines der vier Teile eines Schiffes zu zerstören. \n";
-                cout << "Landet man einen Treffer darf man nochmal schießen. \nWenn man nicht trifft ist der Gegner mit schießen dran. \n";
-                cout << "Treffer werden auf der Karte mit H Misses mit M gekennzeichnet. \nEine Meldung das man ein Schiff zerstört hat gibt es nicht eine extra Herausforderung. \n";
-                cout << "Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt und beendet das Spiel! \n";
-                cout << "Willst du die Regeln nochmal lesen? J/N"<<endl;
-                char a;
-                cin >> a;
-                if (a == *"J" || a == *"N"){
-                    if(a == *"N"){
-                        i = true; 
-                    }
-                }
-                else{
-                    throw logic_error("Falsche Eingabe bitte starte das Spiel neu!"); //Überprüft das nur J und N eingegeben werden
-                }
-            }
-        } */
 
         /**
          * @brief Hilfsfunktion um ein Schiff in das Board zu setzen

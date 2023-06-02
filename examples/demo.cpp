@@ -25,29 +25,6 @@ using namespace ProjectAlpha2;
 
         g.startgame();
         
-        /*std::cout <<"WILLKOMMEN BEI SCHIFFEVERSENKEN"<<endl;
-        std::cout <<"WILLST DU DIR NOCMAL DIE REGELN ANSCHAUEN? J/N"<<endl;
-        char a;
-        cin >> a;
-        if (a == *"J" || a == *"N"){
-            board b;
-            if(a == *"J"){
-                b.printRules();
-            }
-                //Spieler Funktion (pick a player)
-                //2 Boards erstellen
-            b.setShips();
-            b.setShips();
-            b.setShips();
-            b.setShips();
-
-                // Feld wechseln
-            b.shot(); // dort wird in der Funktion das Feld gewechselt
-        }    
-        else
-        {
-            throw logic_error("Verbotene Eingabe bitte Spiel neu starten!");
-        }*/
     }
 
 
