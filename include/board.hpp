@@ -12,24 +12,23 @@ class board : public boardInterface {
 
 public:
   board();
-  void printBoardS();
-  void printBoardG();
-  void printBoard();
-  void setShips();
-  bool canSetShip(int c, int r, bool isHorizontal);
-  void isHit(int r, int c);
-  void shot();
-  bool winner();
-  void printRules();
-  void Schiffsetzen(int r, int c);
+  void printBoard();                //Funktion welche das entsprechende Board druckt
+  bool canSetShip(int c, int r, bool isHorizontal);   //Funktion welche ueberprueft ob ein Angegebenes Schiff ueberhaupt gesetzt werden kann
+  bool isHit(int r, int c);         //Funktion welche ueberprueft ob ein Schuss ein Shiff trifft oder nicht
+  bool winner();                    //Funktion welche für die Ueberpruefung gebraucht wird ob ein Spieler gewonnen hat
+  void Schiffsetzen(int r, int c);      //Funktion welche ein S an die entsprechende Stelle fuer ein Schiff setzt
+  void setH(int r, int c);              //Funktion welche ein H setzt um einen Hit auf einem Board zu markieren
+  void setM(int r, int c);              //Funktion welche ein M setzt um einen Miss zu markieren
 
 private: 
-  const int rows = 10;
-  const int columns = 10;
-  char matrix[10][10];
-  const char SHIP = 'S';
+  const int rows = 10;                  //Jedes Brett hat 10 Reihen
+  const int columns = 10;               //Jedes Brett hat 10 Spalten
+  char matrix[10][10];                  //10 * 10 Matrix als Board
+  const char SHIP = 'S';                //Buchstaben repräsentieren bestimmte Sachen auf einem Board
   const char HIT = 'H';
   const char MISS = 'M';
+  const char DESTROYED = 'X';
+  const char NOHIT = 'O';
   const char LEER = '*';
 };
 }
