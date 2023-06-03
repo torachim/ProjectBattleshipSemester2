@@ -1,5 +1,6 @@
 //#include "../src/board.cpp"
 #include "../include/board.hpp"
+#include "../include/Spieler.hpp"
 #include <iostream>
 #include<string>
 
