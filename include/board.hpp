@@ -19,6 +19,8 @@ public:
   void Schiffsetzen(int r, int c);      //Funktion welche ein S an die entsprechende Stelle fuer ein Schiff setzt
   void setH(int r, int c);              //Funktion welche ein H setzt um einen Hit auf einem Board zu markieren
   void setM(int r, int c);              //Funktion welche ein M setzt um einen Miss zu markieren
+  void setD(int r, int c);
+  void setO(int r, int c);
 
 private: 
   const int rows = 10;                  //Jedes Brett hat 10 Reihen

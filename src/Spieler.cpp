@@ -103,7 +103,7 @@ namespace ProjectAlpha2{
             
 
             if(geg_brett ->isHit(r, c) == true){            //Abfrage ob bei den gegebenen Koordinaten ein Schiff des Gegners liegt
-                boardL.setH(r, c);                          //Wenn ja wird in seinem Brett an den Koordinaten  ein Hit markiert
+                boardL.setH(r, c);                         //Wenn ja wird in seinem Brett an den Koordinaten  ein Hit markiert
                 boardL.printBoard();
                 winnercontrol();                            //Hilfsfunktion wird aufgerufen um zu schauen ob der schießende Spieler gewonnen hat
                 if(getwinner() == false){                   //Wenn er noch nicht gewonnen hat...
