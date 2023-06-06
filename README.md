@@ -29,32 +29,32 @@ Jeder Spieler setzt zu Beginn je 4 Schiffe mit einer Groeße von je 4 Bloecken a
 
 Implementiert wird das Spiel ueber jeweil zwei 10x10 Matrizen pro Spieler. Auf einer sieht man seine eigenen Schiffe und den Status der Schuess des Gegners und auf der anderen sieht man erstmal nur leere Felder und dann immer den Status seiner eigenen abgegebenen Schiffe. 
 Implementiert wird das Spiel über 3 Klassen:
--[ ] board Spielbretter:
--[ ] printboard(): Druckt das entsprechende Spielbrett
--[ ] canSetShip(int r, int c, bool isHorizontal): Prueft ob das gegebene Schiff gestzt werden kann
--[ ] isHit(int r, int c): Prueft ob ein eingegangener Schuss ein Treffer auf diesem Brett ist
--[ ] winner(): Prueft ob bereits 16 Hits gesetzt wurden
--[ ] Schiffesetzen(int r, int c): Setzt ein S fuer Schiff auf einem Brett
--[ ] SetH(int r, int c): Setzt ein H fuer Hit auf ein Brett
--[ ] SetM(int r, int c): Setzt ein M fuer Miss auf ein Brett
--[ ] SetD(int r, int c): Setzt ein X fuer Destroyed auf ein Brett
--[ ] SetO(int r, int c): Setzt ein O fuer NoHit auf ein Brett
+- [ ] board Spielbretter:
+    - [ ] printboard(): Druckt das entsprechende Spielbrett
+    - [ ] canSetShip(int r, int c, bool isHorizontal): Prueft ob das gegebene Schiff gestzt werden kann
+    - [ ] isHit(int r, int c): Prueft ob ein eingegangener Schuss ein Treffer auf diesem Brett ist
+    - [ ] winner(): Prueft ob bereits 16 Hits gesetzt wurden
+    - [ ] Schiffesetzen(int r, int c): Setzt ein S fuer Schiff auf einem Brett
+    - [ ] SetH(int r, int c): Setzt ein H fuer Hit auf ein Brett
+    - [ ] SetM(int r, int c): Setzt ein M fuer Miss auf ein Brett
+    - [ ] SetD(int r, int c): Setzt ein X fuer Destroyed auf ein Brett
+    - [ ] SetO(int r, int c): Setzt ein O fuer NoHit auf ein Brett
 
--[ ] Spieler:
- -[ ] Konstruktor(BrettS, BrettL, Name): Ein Spieler erhällt 2 Bretter eins fuer Schiffe eins fuer Hits und einen Namen
--[ ] shoot(): Funktion um einen Schuss auf den Gegner zu setzen
--[ ] setShips(): Funktion um eins seiner Schiffe auf sein Brett zu setzen
--[ ] getName(): Gibt den Namen des entsprechenden Spieler zurueck
--[ ] setEnboard(Board): Erzeugt einen Pointer auf das gegnerische Schiffbrett
--[ ] getSBoard(): Gibt das Brett eines Spielers mit seinen Schiffen zurueck
--[ ] getLBoard(): Gibt das Brett eines Spielers mit den Hits und Misses zurueck
--[ ] winnercontrol(): Kontrolliert ob der entsprechende Spieler bereits gewonnen hat
--[ ] getwinner(): Gibt das Bool winner zurueck was anzeigt ob der Spieler schon gewonnen hat
+- [ ] Spieler:
+    - [ ] Konstruktor(BrettS, BrettL, Name): Ein Spieler erhällt 2 Bretter eins fuer Schiffe eins fuer Hits und einen Namen
+    - [ ] shoot(): Funktion um einen Schuss auf den Gegner zu setzen
+    - [ ] setShips(): Funktion um eins seiner Schiffe auf sein Brett zu setzen
+    - [ ] getName(): Gibt den Namen des entsprechenden Spieler zurueck
+    - [ ] setEnboard(Board): Erzeugt einen Pointer auf das gegnerische Schiffbrett
+    - [ ] getSBoard(): Gibt das Brett eines Spielers mit seinen Schiffen zurueck
+    - [ ] getLBoard(): Gibt das Brett eines Spielers mit den Hits und Misses zurueck
+    - [ ] winnercontrol(): Kontrolliert ob der entsprechende Spieler bereits gewonnen hat
+    - [ ] getwinner(): Gibt das Bool winner zurueck was anzeigt ob der Spieler schon gewonnen hat
 
--[ ] game Hier findet das gesammte Spiel statt:
--[ ] Konstruktor(Spieler1, Spieler2): Erzeugt ein Spiel aus zwei Spielern
--[ ] printRules(): Druckt die Regeln des Spieles aus
--[ ] startgame(): In dieser Funktion findet das gesammte Spiel statt erst setzt jeder seine Schiffe und dann wird abwechselnd geschossen bis einer gewonnen hat
--[ ] endgame(): Beendet das Spiel und ruft den Sieger aus
+- [ ] game Hier findet das gesammte Spiel statt:
+    - [ ] Konstruktor(Spieler1, Spieler2): Erzeugt ein Spiel aus zwei Spielern
+    - [ ] printRules(): Druckt die Regeln des Spieles aus
+    - [ ] startgame(): In dieser Funktion findet das gesammte Spiel statt erst setzt jeder seine Schiffe und dann wird abwechselnd geschossen bis einer gewonnen hat
+    - [ ] endgame(): Beendet das Spiel und ruft den Sieger aus
 
 ## Tests
