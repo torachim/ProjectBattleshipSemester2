@@ -123,11 +123,12 @@ namespace ProjectAlpha2{
             if(matrix[r][c] == NOHIT || matrix[r][c] == DESTROYED)       //Teste ob Eingabe korrekt ist, also Koordinate wurde nicht schon bereits eingegeben
             {      
                 cout << endl << " Input incorrect. Please try again.";
-                return true;
+                return false;
             }
             if(matrix[r][c] == SHIP)  //Überprüft ob Hit ist
             { 
                 matrix[r][c] = DESTROYED;  // wird als Kaputt makiert
+                //setD(r, c);
                     cout << endl<< "Hit! Continue";
                     return true;
             }
@@ -169,6 +170,14 @@ namespace ProjectAlpha2{
          */
         void board::setM(int r, int c){
             matrix[r][c] = MISS;
+        }
+
+        void board::setD(int r, int c){
+            matrix[r][c] = DESTROYED;
+        }
+
+        void board::setO(int r, int c){
+            matrix[r][c] = NOHIT;
         }
 
 
