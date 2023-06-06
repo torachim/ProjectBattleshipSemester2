@@ -89,6 +89,7 @@ namespace ProjectAlpha2{
          * 
          */
         void Spieler::shoot(){
+
             int x;
             int y;
 
@@ -98,10 +99,10 @@ namespace ProjectAlpha2{
             cout << endl <<"Enter y coordinate: ";
             cin >> y;
 
+
             int r = y - 1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
             int c = x - 1;
             
-
             if(geg_brett ->isHit(r, c) == true){            //Abfrage ob bei den gegebenen Koordinaten ein Schiff des Gegners liegt
                 boardL.setH(r, c);                         //Wenn ja wird in seinem Brett an den Koordinaten  ein Hit markiert
                 boardL.printBoard();
@@ -115,7 +116,6 @@ namespace ProjectAlpha2{
                 boardL.setM(r, c);                          //Wenn kein Trefer gelandet wurde wird ein Miss gestzt
                 boardL.printBoard();
             }
-            
         }
 
         /**
