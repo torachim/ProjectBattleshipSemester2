@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/game.hpp"
+//#include "../include/Spieler.hpp"
 #include <memory>
 
 
@@ -77,10 +78,13 @@ namespace ProjectAlpha2{
             while(ongoing == true){
                 cout << Spieler1.getName() << " Du bist dran" << endl;
                 Spieler1.shoot();                                               //Spieler 1 schießt
-                if(Spieler1.getwinner() == true){                               //Wenn er gewonnen hat wird die Abbruchbedingung gesetzt
+                if(Spieler1.getwinner() == true)
+                {                               //Wenn er gewonnen hat wird die Abbruchbedingung gesetzt
                     ongoing = false;
                 }
-                else{
+                else
+                {
+
                     cout << Spieler2.getName() << " Du bist dran" << endl;
                     Spieler2.shoot();                                           //Spieler 2 schießt
                     if(Spieler2.getwinner() == true){                           //Wenn er gewonnen hat wird die Abbruchbedingung gesetzt

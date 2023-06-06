@@ -120,7 +120,6 @@ namespace ProjectAlpha2{
          */
         bool board::isHit(int r, int c) //Überpüft ob Eingabe ein Hit ist
         {
-            printBoard();
             if(matrix[r][c] == NOHIT || matrix[r][c] == DESTROYED)       //Teste ob Eingabe korrekt ist, also Koordinate wurde nicht schon bereits eingegeben
             {      
                 cout << endl << " Input incorrect. Please try again.";

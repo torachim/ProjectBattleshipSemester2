@@ -27,3 +27,4 @@ add_executable(demo1
 #   LIBRARY DESTINATION "${PROJECT_SOURCE_DIR}/extra")
 
 #cmake -S . -B build && cmake --build build
+# ./build/demo1
