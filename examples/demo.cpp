@@ -4,11 +4,13 @@
 #include "../include/game.hpp"
 #include <iostream>
 #include<string>
+//#include <pybind11/pybind11.h>
 
 using namespace std;
 
 using namespace ProjectAlpha2;
 
+//namespace py = pybind11;
 
     int main()
     {
@@ -26,5 +28,12 @@ using namespace ProjectAlpha2;
         
     }
 
+/*
+PYBIND11_MODULE(schiffeversenken, m) {
+    // Add functions to the module
+    m.def("Spieler", &spieler, "creates player");
+    m.def
+}
+*/
 
 //clang++ -std=c++17 -I./include  examples/demo.cpp -o game

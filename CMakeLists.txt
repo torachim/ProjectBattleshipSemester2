@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.14)
 project(Schiffeversenken)
 
+#für pybind11
+#add_subdirectory(pybind11)
+#pybind11_add_module(schiffeversenken demo.cpp)
+
 set(CMAKE_CXX_STANDARD 17)
 
 add_compile_options(-fsanitize=address)
