@@ -19,8 +19,7 @@ Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt.
 
 ## UML battleship
 
-![Employee data](/UML/UML_Schiffe_versenken.png)
-
+![Employee data](https://gitlab.cs.uni-bonn.de/raut0/projekt2torgesnehpreet/-/blob/main/UML/UML%20Schiffe%20versenken.png)
 /projekt2torgesnehpreet/UML/UML battleship.png
 
 ## Regeln
