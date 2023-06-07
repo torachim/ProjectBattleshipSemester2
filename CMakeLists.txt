@@ -10,16 +10,25 @@ find_package(pybind11 REQUIRED)
 
 #für pybind11
 #add_subdirectory(pybind11)
+<<<<<<< HEAD
 #pybind11_add_module(schiffeversenken demopybind11.cpp)
 
+=======
+#pybind11_add_module(schiffeversenken demopybind.cpp)
+>>>>>>> 2a4c753f8f4a4823e79fe9d225be34f731f3483f
 
 
 add_compile_options(-fsanitize=address)
 add_link_options(-fsanitize=address)
 
+<<<<<<< HEAD
 
+=======
+include_directories(include)
+include_directories(external)
+>>>>>>> 2a4c753f8f4a4823e79fe9d225be34f731f3483f
 
-#find_package(pybind11 REQUIRED)
+find_package(pybind11 REQUIRED)
 
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 add_executable(demo1
@@ -51,7 +60,11 @@ target_link_libraries(test1 GTest::gtest_main)
 gtest_discover_tests(test1)
 
 pybind11_add_module(schiffeversenken
+<<<<<<< HEAD
     examples/demopybind11.cpp
+=======
+   examples/demopybind.cpp
+>>>>>>> 2a4c753f8f4a4823e79fe9d225be34f731f3483f
     ${SRC_FILES}
 )
 
