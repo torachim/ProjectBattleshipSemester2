@@ -40,7 +40,9 @@ PYBIND11_MODULE(schiffeversenken, m) {
 
 
 
-/* server phyton: 
+/* 
+
+server phyton: 
 
 import socket
 
@@ -68,6 +70,7 @@ def start_server():
 
 if __name__ == '__main__':
     start_server()
+
 
 
 client Phyton: 
