@@ -31,7 +31,7 @@ meine_coole_rest_api = FastAPI()
 async def run_game():
     return 
     {
-      "Game" : run_game(),
+      "Game" : run_game()
     }
 
 

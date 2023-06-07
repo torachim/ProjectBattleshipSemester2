@@ -11,8 +11,8 @@ namespace ProjectAlpha2{
 
         public:
             Spieler(board boardS_, board boardL_, std::string Name_);       //Spieler erstellen
-            void shoot ();                                                  //Shoot Funktion als Spielerfunktion
-            void setShips ();                                               //Funktion um die Schiffe zu setzen
+            void shoot (int x, int y);                                                  //Shoot Funktion als Spielerfunktion
+            void setShips (int x, int y, bool isHorizontal);                                               //Funktion um die Schiffe zu setzen
             std::string getName();                                          //Funktion um den Namen eines Spielers zu bekommen
             void setEnBoard (board Enemyboard);                             //Funktion um das Gegnerboard festzulegen
             board getSBoard();                                              //Funktion welche das Board mit den Schiffen zurueckgibt
