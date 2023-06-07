@@ -3,7 +3,7 @@ project(Schiffeversenken)
 
 #für pybind11
 #add_subdirectory(pybind11)
-#pybind11_add_module(schiffeversenken demo.cpp)
+#pybind11_add_module(schiffeversenken demopybind.cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
