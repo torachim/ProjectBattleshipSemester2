@@ -13,12 +13,6 @@ def main():
   current_guess = response_json['Game']
   print(f"Game: '{run_game}'")
   
-  while current_guess.find("?") != -1:
-    letter = input(f"Buchstabe raten:")
-    response_json = requests.get(f"{base_api_url}/guess/{letter}").json()
-    current_guess = response_json['Current guess']
-    print(f"Current guess: '{current_guess}'")
-  
 
 if __name__ == '__main__':
   main()
