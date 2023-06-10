@@ -7,8 +7,8 @@ namespace ProjectAlpha2{
     class SpielerInterface{
 
         public:
-            virtual void shoot () = 0;
-            virtual void setShips () = 0;
+            virtual void shoot (int x, int y) = 0;
+            virtual void setShips (int x, int y, bool isHorizontal) = 0;
             virtual std::string getName() = 0;
             virtual void setEnBoard(board EnemyBoard) = 0;
             virtual board getSBoard() = 0;

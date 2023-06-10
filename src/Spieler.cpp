@@ -41,13 +41,13 @@ namespace ProjectAlpha2{
             //cin >> x ;
             if(x > 10 || x < 1){
                 cout << endl << "Input incorrect! Please try again!";
-                setShips();
+               // setShips();
             }
             //cout << endl <<"Enter starting coordinate y (1-10): " ;
             //cin >> y;
             if(y > 10 || y < 1){
                 cout << endl << "Input incorret! Please try again!";
-                setShips();
+                //setShips();
             }
 
             //cout << endl << "Enter Orientation(1 for horizontal,0 for vertical): "; //Abfrage der Richtung
@@ -80,7 +80,7 @@ namespace ProjectAlpha2{
             else
             {
                 cout<< endl << "Input incorrect. Please try again."; //Erneute eingabe, falls Fehler bei vorheriger Eingabe
-                setShips();
+                //setShips();
             }  
         }
 
@@ -108,7 +108,7 @@ namespace ProjectAlpha2{
                 boardL.printBoard();
                 winnercontrol();                            //Hilfsfunktion wird aufgerufen um zu schauen ob der schießende Spieler gewonnen hat
                 if(getwinner() == false){                   //Wenn er noch nicht gewonnen hat...
-                    shoot();                                //darf er nochmal schießen
+                   // shoot();                                //darf er nochmal schießen
                 }
             }  
 

@@ -2,7 +2,7 @@
 # Run with
 #   uvicorn demo_fastapi_2:meine_coole_rest_api --port 8000 --reload
 # or, if uvicorn is not in PATH, run as
-#   python3 -m uvicorn demo_fastapi_2:meine_coole_rest_api --port 8000  --reload
+#   python3 -m uvicorn demo_api:rapi --port 8000  --reload
 
 # Import magic
 try:
@@ -22,12 +22,12 @@ from fastapi import FastAPI
 import uvicorn
 
 # Mit diesem Objekt wird der Webservice konfiguriert
-meine_coole_rest_api = FastAPI()
+rapi = FastAPI()
 
 # Füge den Pfad '/' hinzu
 # Wenn dieser Pfad ausgewählt wird, soll die darunter stehende Funktion ausgeführt werden
 # Die Rückgabe der Funktion wird den Nutzer:innen (typischerweise als) JSON-Objekt übertragen
-@meine_coole_rest_api.get("/")
+@rapi.get("/")
 async def run_game():
     return 
     {

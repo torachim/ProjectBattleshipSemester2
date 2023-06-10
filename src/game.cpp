@@ -60,7 +60,7 @@ namespace ProjectAlpha2{
         //cin >> x;
         if (x == 1 || x == 2){
             if (x == 2){
-                printrules();                   //Bei entsprechender Eingabe werden die Regeln gedruckt
+               // printrules();                   //Bei entsprechender Eingabe werden die Regeln gedruckt
             }
             cout << "DAS SPIEL STARTET" << endl;                                                //Das Spiel startet
             cout << Spieler1.getName() << " DU BIST DRAN! SETZE DEINE SCHIFFE" << endl;         
