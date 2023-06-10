@@ -30,14 +30,19 @@ PYBIND11_MODULE(schiffeversenken, m) {
 
     m.doc() = "Schiffeversenken Example";
 
-    py::class_<ProjectAlpha2::board>(m, "board");
-    py::class_<ProjectAlpha2::Spieler>(m, "Spieler");
-    py::class_<ProjectAlpha2::Game>(m, "Game");
+    py::class_<board>(m, "board");
+        .def
 
-    m.def("run_game", &run_game, "Run the game");
-    //m.def("startgame", &Game::startgame);
+    py::class_<::Spieler>(m, "Spieler");
+    Spieler(board boardS_, board boardL_, std::string Name_); 
+        .def(py::init<board boardS_, board boardL)
+        .def("setShips", &Spieler::setShips, "Sets a Ship");
+        .def("setEnBoard", &Spieler::startgame);
+
+    py::class_<::Game>(m, "Game");
+        .def("printRules", &Game::printRules, "Prints the rules");
+    
 }
-
 
 
 /* 

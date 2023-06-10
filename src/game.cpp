@@ -22,7 +22,7 @@ namespace ProjectAlpha2{
      * @brief Funktion welche die Regeln von unserem Schiffeversenken druckt
      * 
      */
-    void Game::printrules(){
+    void Game::printrules(char a){
             bool i = false;     //Bool um die regeln im Falle nochmal zu drucken
             while(!i)
             {
@@ -36,8 +36,8 @@ namespace ProjectAlpha2{
                 cout << "Treffer werden auf der Karte mit H Misses mit M gekennzeichnet. \nEine Meldung das man ein Schiff zerstört hat gibt es nicht eine extra Herausforderung. \n";
                 cout << "Wer als erstes alle Schiffe seines Gegners zerstört hat gewinnt und beendet das Spiel! \n";
                 cout << "Willst du die Regeln nochmal lesen? J/N"<<endl;
-                char a;
-                cin >> a;
+                //char a;
+                //cin >> a;
                 if (a == *"J" || a == *"N"){
                     if(a == *"N"){              //eingabe wenn man die Regeln nicht nocchmal sehen will
                         i = true; 
@@ -53,11 +53,11 @@ namespace ProjectAlpha2{
      * @brief Funktion in welcher das Spiel abläuft
      * 
      */
-    void Game::startgame(){
+    void Game::startgame(int x){
         cout << "WILLKOMMEN BEI SCHIFFEVERSENKEN" << endl;
         cout << "MÖCHTEST DU: \nEIN SPIEL STARTEN (1) \nDIE REGELN SEHEN (2) \nEINGABE(1/2)" << endl;       //Eingabe ob man die Regeln sehen will oder direkt starten will
-        int x;
-        cin >> x;
+        //int x;
+        //cin >> x;
         if (x == 1 || x == 2){
             if (x == 2){
                 printrules();                   //Bei entsprechender Eingabe werden die Regeln gedruckt
