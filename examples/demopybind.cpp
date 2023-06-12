@@ -38,9 +38,15 @@ PYBIND11_MODULE(schiffeversenken, m) {
         .def(py::init<board boardS_, board boardL)
         .def("setShips", &Spieler::setShips, "Sets a Ship");
         .def("setEnBoard", &Spieler::startgame);
+        .def("getSBoard", &Spieler:: getSBoard);
+        .def("getLBoard", &Spieler:: getLBoard);
+        .def("shoot", &Spieler::shoot);
+        .def("getwinner", &Spieler::getwinner);
+        
 
     py::class_<::Game>(m, "Game");
         .def("printRules", &Game::printRules, "Prints the rules");
+    
     
 }
 
