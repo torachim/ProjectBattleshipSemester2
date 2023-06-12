@@ -3,6 +3,8 @@
 #   uvicorn demo_fastapi_2:meine_coole_rest_api --port 8000 --reload
 # or, if uvicorn is not in PATH, run as
 #   python3 -m uvicorn demo_api:rapi --port 8000  --reload
+# python3 -m uvicorn demo_api:schiffeversenken --port 8000  --reload
+
 
 # Import magic
 try:
@@ -14,9 +16,7 @@ except ImportError as e:
   print(f"Exiting")
   exit(1)
 
-from schiffeversenken import board
-from schiffeversenken import Spieler
-from schiffeversenken import Game
+from schiffeversenken import board, Spieler, Game
 import os
 from fastapi import FastAPI
 import uvicorn
