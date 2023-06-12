@@ -58,6 +58,7 @@ PYBIND11_MODULE(schiffeversenken, m) {
         .def(py::init<Spieler, Spieler>())
         .def("printRules", &Game::printrules, "Prints the rules");
     
+    
 }
 
 
