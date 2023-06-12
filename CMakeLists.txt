@@ -10,7 +10,7 @@ find_package(pybind11 REQUIRED)
 
 #für pybind11
 #add_subdirectory(pybind11)
-pybind11_add_module(schiffeversenken demopybind11.cpp)
+#pybind11_add_module(schiffeversenken demopybind11.cpp)
 
 
 

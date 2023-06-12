@@ -65,11 +65,11 @@ namespace ProjectAlpha2{
             cout << "DAS SPIEL STARTET" << endl;                                                //Das Spiel startet
             cout << Spieler1.getName() << " DU BIST DRAN! SETZE DEINE SCHIFFE" << endl;         
             for(int i = 0; i < 4; i++){                                                         //Der erste Spieler setzzt 4 Schiffe
-                Spieler1.setShips();
+               // Spieler1.setShips();
             }
             cout << Spieler2.getName() << " DU BIST DRAN SETZE DEINE SCHIFFE" << endl;
             for(int i = 0; i < 4; i++){                                                         //Der zweite Spieler setzt seine 4 Schiffe
-                Spieler2.setShips();
+                //Spieler2.setShips();
             }
             Spieler2.setEnBoard(Spieler1.getSBoard());                              //Spieler 2 erhällt das gegnerische Brett mit Schiffen als geg_Brett
             Spieler1.setEnBoard(Spieler2.getSBoard());                              //Spieler 1 erhällt das gegnerische Brett mit Schiffen als geg_Brett
@@ -77,7 +77,7 @@ namespace ProjectAlpha2{
             bool ongoing = true;
             while(ongoing == true){
                 cout << Spieler1.getName() << " Du bist dran" << endl;
-                Spieler1.shoot();                                               //Spieler 1 schießt
+                //Spieler1.shoot();                                               //Spieler 1 schießt
                 if(Spieler1.getwinner() == true)
                 {                               //Wenn er gewonnen hat wird die Abbruchbedingung gesetzt
                     ongoing = false;
@@ -86,7 +86,7 @@ namespace ProjectAlpha2{
                 {
 
                     cout << Spieler2.getName() << " Du bist dran" << endl;
-                    Spieler2.shoot();                                           //Spieler 2 schießt
+                    //Spieler2.shoot();                                           //Spieler 2 schießt
                     if(Spieler2.getwinner() == true){                           //Wenn er gewonnen hat wird die Abbruchbedingung gesetzt
                         ongoing = false;
                     }        

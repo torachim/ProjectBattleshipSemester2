@@ -24,7 +24,7 @@ using namespace ProjectAlpha2;
         
         Game g = Game (t, p);
 
-        g.startgame();
+    //    g.startgame();
         
     }
 
