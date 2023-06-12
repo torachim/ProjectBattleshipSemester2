@@ -3,6 +3,8 @@
 #   uvicorn demo_fastapi_2:meine_coole_rest_api --port 8000 --reload
 # or, if uvicorn is not in PATH, run as
 #   python3 -m uvicorn demo_api:rapi --port 8000  --reload
+# python3 -m uvicorn demo_api:schiffeversenken --port 8000  --reload
+
 
 # Import magic
 try:
@@ -14,14 +16,14 @@ except ImportError as e:
   print(f"Exiting")
   exit(1)
 
-from schiffeversenken import board,Spieler,Game
+from schiffeversenken import board, Spieler, game
 import os
 from fastapi import FastAPI
 import uvicorn
 
 # Mit diesem Objekt wird der Webservice konfiguriert
 rapi = FastAPI()
-
+g = game()
 # Füge den Pfad '/' hinzu
 # Wenn dieser Pfad ausgewählt wird, soll die darunter stehende Funktion ausgeführt werden
 # Die Rückgabe der Funktion wird den Nutzer:innen (typischerweise als) JSON-Objekt übertragen
