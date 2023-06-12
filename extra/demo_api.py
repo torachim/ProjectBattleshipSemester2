@@ -14,9 +14,7 @@ except ImportError as e:
   print(f"Exiting")
   exit(1)
 
-from schiffeversenken import board
-from schiffeversenken import Spieler
-from schiffeversenken import Game
+from schiffeversenken import board,Spieler,Game
 import os
 from fastapi import FastAPI
 import uvicorn
@@ -37,4 +35,4 @@ async def run_game():
 
 if __name__ == '__main__':
   this_python_file = os.path.basename(__file__)[:-3]
-  instance = uvicorn.run(f"{this_python_file}:meine_coole_rest_api", host="127.0.0.1", port=8000, log_level="info", reload=True)
+  instance = uvicorn.run(f"{this_python_file}:rapi", host="127.0.0.1", port=8000, log_level="info", reload=True)
