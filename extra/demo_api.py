@@ -3,7 +3,7 @@
 #   uvicorn demo_fastapi_2:meine_coole_rest_api --port 8000 --reload
 # or, if uvicorn is not in PATH, run as
 #   python3 -m uvicorn demo_api:rapi --port 8000  --reload
-# python3 -m uvicorn demo_api:schiffeversenken --port 8000  --reload
+# 
 
 
 # Import magic
@@ -16,23 +16,50 @@ except ImportError as e:
   print(f"Exiting")
   exit(1)
 
-from schiffeversenken import board, Spieler, game
+from schiffeversenken import board, Spieler, Game
 import os
 from fastapi import FastAPI
 import uvicorn
 
 # Mit diesem Objekt wird der Webservice konfiguriert
 rapi = FastAPI()
-g = game()
-# Füge den Pfad '/' hinzu
-# Wenn dieser Pfad ausgewählt wird, soll die darunter stehende Funktion ausgeführt werden
-# Die Rückgabe der Funktion wird den Nutzer:innen (typischerweise als) JSON-Objekt übertragen
+
+playerList, playerName = [], [] 
+player1 = None
+player2 = None
+counter = 0
+game = False
+b1S, b1L, b2S, b2L = board(), board(), board(), board()
+
 @rapi.get("/")
-async def run_game():
-    return 
-    {
-      "Game" : run_game()
-    }
+async def Hauptnachricht():
+  txtNachricht = f"Willkommen bei Schiffeversenken.\n In diesem Spiel befinden sich aktuell {len(playerList)} Spieler."
+  return {"information": txtNachricht}
+
+#Spieler hinzufuegen
+@rapi.get("/addPlayer/{userName}")
+async def Spielerhinzufuegen(userName : str):
+  global player1, player2, game
+  if(userName not in playerName and len(playerName) <= 1):
+    if (not game):
+      playerName.append(userName)
+    else:
+      return{"information": "Spiel hat schon gestartet",
+             "status": False}
+    
+  if (len(playerName) == 2):
+    player1 = Spieler(b1S, b1L, playerName[0])
+    player2 = Spieler(b2S, b2L, playerName[1])
+    playerList.append(player1)
+    playerList.append(player2)
+    return {"information": "Spiel kann gestartet werden",
+            "Status": True}
+  else:
+    return {"information": "Warte auf andere Spieler...",
+            "Status": False}
+  
+
+  
 
 
 if __name__ == '__main__':

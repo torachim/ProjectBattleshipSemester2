@@ -28,7 +28,7 @@ using namespace ProjectAlpha2;
 
 PYBIND11_MODULE(schiffeversenken, m) {
 
-    m.doc() = "schiffeversenken";
+    m.doc() = "Schiffeversenken example";
 
     py::class_<::board>(m, "board")
         .def(py::init< >())
