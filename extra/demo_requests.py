@@ -1,10 +1,10 @@
 #client
 # Start demo_api in background first
-
+import time
 import requests
 from schiffeversenken import board
 from schiffeversenken import Spieler
-from schiffeversenken import game
+from schiffeversenken import Game
 from pprint import pprint # Bei größeren Dicts sollte man pprint(...) statt print(...) verwenden
 
 bs = board()
@@ -82,6 +82,20 @@ def main():
   
   response = requests.get(base_api_url).json()
   pprint(response["information"])
+
+  username = input("Bitte gebe deinen Namen ein:")
+  response = requests.get(f"{base_api_url}/addPlayer/{username}").json()
+
+  
+  while(not response["Status"]):
+    pprint(response["information"])
+    response = requests.get(f"{base_api_url}/addPlayer/{username}").json()
+    time.sleep(10.0)
+
+  response = requests.get(f"{base_api_url}/Spiel/Spieler/{username}").json()
+  pprint(response["information"])
+
+
   
 
 if __name__ == '__main__':

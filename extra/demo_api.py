@@ -39,7 +39,7 @@ async def Hauptnachricht():
 #Spieler hinzufuegen
 @rapi.get("/addPlayer/{userName}")
 async def Spielerhinzufuegen(userName : str):
-  global player1, player2, game
+  global player1, player2, game, playerName, playerList
   if(userName not in playerName and len(playerName) <= 1):
     if (not game):
       playerName.append(userName)
@@ -57,6 +57,19 @@ async def Spielerhinzufuegen(userName : str):
   else:
     return {"information": "Warte auf andere Spieler...",
             "Status": False}
+
+@rapi.get("/Spiel/Spieler/{userName}")
+async def Erhalte_Spieler(userName : str):
+  global playerList, playerName
+  if (userName == playerName[0]):
+    t = player1.Erhalte_Schiffe_Brett()
+    return{"information": t,
+           "Status": True}
+  else:
+    k = player2.Erhalte_Schiffe_Brett()
+    return{"information": k,
+           "Status": True}
+
   
 
   
