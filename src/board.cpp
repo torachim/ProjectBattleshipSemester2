@@ -48,12 +48,14 @@ namespace ProjectAlpha2{
          * @return true Schiff kann gesetzt werden
          * @return false Schiff kann nicht gesetzt werden
          */
-        bool board::canSetShip(int r, int c, int isHorizontal)  //Überprüft, ob Eingabe korrekt ist
+        bool board::canSetShip(int c, int r, int isHorizontal)  //Überprüft, ob Eingabe korrekt ist
         {
+            printBoard();
             if(isHorizontal == 1){
 
                 for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde // AUSNAHME
                 {
+                    
                     if(matrix[r][c] == SHIP)
                     {
                         return false; 
@@ -143,8 +145,9 @@ namespace ProjectAlpha2{
          * @param r row Koordinate
          * @param c coloumn Koordinate
          */
-        void board::Schiffsetzen(int r, int c){
+        void board::Schiffsetzen(int c, int r){
             matrix[r][c] = SHIP;
+            printBoard();
         }
 
         /**
