@@ -8,7 +8,7 @@ namespace ProjectAlpha2{
 
         public:
             virtual void shoot (int x, int y) = 0;
-            virtual void setShips (int x, int y, bool isHorizontal) = 0;
+            virtual void setShips (int x, int y, int isHorizontal) = 0;
             virtual std::string getName() = 0;
             virtual void setEnBoard(board EnemyBoard) = 0;
             virtual board getSBoard() = 0;

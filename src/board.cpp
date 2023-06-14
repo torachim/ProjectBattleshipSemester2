@@ -48,14 +48,10 @@ namespace ProjectAlpha2{
          * @return true Schiff kann gesetzt werden
          * @return false Schiff kann nicht gesetzt werden
          */
-        bool board::canSetShip(int c, int r, bool isHorizontal)  //Überprüft, ob Eingabe korrekt ist
+        bool board::canSetShip(int r, int c, int isHorizontal)  //Überprüft, ob Eingabe korrekt ist
         {
-            if(isHorizontal)
-            {
-                if(c+3 > 9)  //Prüft, ob Ship übers Board hinaus läuft
-                {
-                    return false;
-                }
+            if(isHorizontal == 1){
+
                 for (int i = 0; i < 4; ++i) //Prüft, ob nicht schon an dieser Stelle ein Ship gesetzt wurde // AUSNAHME
                 {
                     if(matrix[r][c] == SHIP)
@@ -64,13 +60,9 @@ namespace ProjectAlpha2{
                     }
                     c = c + 1;
                 }
+               
             }
-            else
-            {
-                if(r+3 > 9) // Das selbe nur für Y-Achse
-                {
-                    return false;
-                }
+            else{
                 for (int i = 0; i < 4; ++i) 
                 {
                     if(matrix[r][c] == SHIP)
@@ -79,9 +71,12 @@ namespace ProjectAlpha2{
                     }
                     r = r + 1;
                 }
+                
             }
             return true;
+           
         }
+        
 
         /**
          * @brief Funktion welche angibt ob über das Brett bereits gewonnen wurde

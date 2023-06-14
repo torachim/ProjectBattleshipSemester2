@@ -7,8 +7,7 @@ from schiffeversenken import Spieler
 from schiffeversenken import Game
 from pprint import pprint # Bei größeren Dicts sollte man pprint(...) statt print(...) verwenden
 
-bs = board()
-bl = board()
+base_api_url = "http://127.0.0.1:8000"
 
 def kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung):
   if int(Richtung) == 0:
@@ -35,10 +34,10 @@ def eingabeSchiffe():
         x_Koordinate = input("Es wurde keine Zahl übergeben. Gebe eine Zahl zwischen 1 und 10 ein \n")
 
     print("Bitte gebe die y-Koordinate deines Schiffes an [1-10]")
-    y_Kooridinate = input()
+    y_Koordinate = input()
     while True:
       try:
-        while int(y_Kooridinate) < 1 or int(y_Kooridinate) > 10:
+        while int(y_Koordinate) < 1 or int(y_Koordinate) > 10:
           print("Fehlerhafte Eingabe! Bitte eine Zahl zwischen 1 und 10 eingeben")
           y_Koordinate = input()
         break
@@ -56,17 +55,15 @@ def eingabeSchiffe():
       except:
         Richtung = input("Es wurde keine Zahl übergebn. Gebe 0[Vertikal], 1[Horrizontal]")
 
-    if kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung) == True:
-      x = 0
-      while x < 4:
-        if Richtung == 0:
-          bs.Schiffsetzen(int(x_Koordinate), int(y_Koordinate))
-          x_Koordinate = x_Koordinate + 1
-          x = x + 1
-        else:
-          bs.Schiffsetzen(int(x_Koordinate), int(y_Koordinate))
-          y_Koordinate = y_Koordinate + 1
-          x = x +1
+    if (kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung) == True):
+      response = requests.get(f"{base_api_url}/Spiel/Schiffkontrolle/{x_Koordinate}/{y_Koordinate}/{Richtung}").json()
+      if(response["Status"]):
+        response = requests.get(f"{base_api_url}/Spiel/Schiffesetzen/{x_Koordinate}/{y_Koordinate}/{Richtung}").json()
+        pprint(response["information"])
+      else:
+        print("Schiff setzen nicht möglich! Bitte erneut versuchen")
+        eingabeSchiffe()
+
     else:
       print("Schiff setzen nicht möglich bitte versuche es erneut")
       eingabeSchiffe() 
@@ -90,10 +87,27 @@ def main():
   while(not response["Status"]):
     pprint(response["information"])
     response = requests.get(f"{base_api_url}/addPlayer/{username}").json()
-    time.sleep(10.0)
-
-  response = requests.get(f"{base_api_url}/Spiel/Spieler/{username}").json()
+    time.sleep(5.0)
   pprint(response["information"])
+  time.sleep(5.0)
+
+  t = False
+  while(not t):
+    response = requests.get(f"{base_api_url}/Spiel/Setzen/{username}").json()
+    if(response["Status"] == True):
+      pprint(response["information"])
+      i = 0
+      while (i < 4):
+        eingabeSchiffe()
+        i = i + 1
+    else:
+      pprint(response["information"])
+    time.sleep(5.0)
+    
+
+
+  #response = requests.get(f"{base_api_url}/Spiel/Spieler/{username}").json()
+  #pprint(response["information"])
 
 
   
