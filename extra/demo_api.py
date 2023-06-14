@@ -70,9 +70,6 @@ async def Erhalte_Spieler(userName : str):
     return{"information": k,
            "Status": True}
 
-  
-
-  
 
 
 if __name__ == '__main__':
