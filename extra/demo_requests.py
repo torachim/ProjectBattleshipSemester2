@@ -33,8 +33,8 @@ def Hilfebrett(x : int, y : int, Richtung : int):
 
 #Funktion welche Konntrolliert ob eingegebene Schiffe nicht über das Brett hinausragen
 def kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung):
-  if int(Richtung) == 0:
-    if int(y_Koordinate) + 4 <= 10:
+  if int(Richtung) == 0: #wenn Gesetztes horizontal ist
+    if int(y_Koordinate) + 4 <= 10: #kontrolliert ob gesetztes Schiff nicht über Brett hinausläuft
       return True
     else:
       return False
@@ -52,7 +52,7 @@ def eingabeSchiffe():
       try:                      #Ausnahmen    
         while int(x_Koordinate) < 1 or int(x_Koordinate) > 10:
           print("Fehlerhafte Eingabe! Bitte eine Zahl zwischen 1 und 10 eingeben")
-          x_Koordinate = input()
+          x_Koordinate = input() #erneute Abfrage
         break
       except:
         x_Koordinate = input("Es wurde keine Zahl übergeben. Gebe eine Zahl zwischen 1 und 10 ein \n")
@@ -152,7 +152,7 @@ def main():
 
   #Eingabe des Namens
   username = input("Bitte gebe deinen Namen ein:")
-  response = requests.get(f"{base_api_url}/addPlayer/{username}").json()
+  response = requests.get(f"{base_api_url}/addPlayer/{username}").json() # spieler erstellen
 
   #Abfrage ob genug Spieler vorhande
   while(not response["Status"]):
@@ -170,14 +170,14 @@ def main():
     if(response["Status"] == True):
       print(response["information"])
       i = 0
-      while (i < 4):
+      while (i < 4):# 4 schiffe setzten
         eingabeSchiffe()
         bS.print_board()
         i = i + 1
     else:
       print(response["information"])
     time.sleep(5.0)
-    response = requests.get(f"{base_api_url}/Spiel/starten").json()
+    response = requests.get(f"{base_api_url}/Spiel/starten").json() 
     if(response["Status"]):
       t = True
       print(response["information"])
@@ -186,7 +186,7 @@ def main():
   #Schießen
   response = requests.get(f"{base_api_url}/Spiel/getGame").json()
   while (response["Status"]):
-    response = requests.get(f"{base_api_url}/Spiel/Schießen/{username}").json()
+    response = requests.get(f"{base_api_url}/Spiel/Schießen/{username}").json() # schiff setzten
     if(response["Status"]):
       print(response["information"])
       eingabeSchuss()
