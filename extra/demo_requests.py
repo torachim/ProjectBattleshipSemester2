@@ -8,6 +8,9 @@ from schiffeversenken import Game
 from pprint import pprint # Bei größeren Dicts sollte man pprint(...) statt print(...) verwenden
 
 base_api_url = "http://127.0.0.1:8000"
+bS, bL = board(), board()
+
+
 
 def kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung):
   if int(Richtung) == 0: #wenn Gesetztes horizontal ist
@@ -58,8 +61,10 @@ def eingabeSchiffe():
     if (kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung) == True):
       response = requests.get(f"{base_api_url}/Spiel/Schiffkontrolle/{x_Koordinate}/{y_Koordinate}/{Richtung}").json()
       if(response["Status"]):
+        Hilfebrett(x_Koordinate, y_Koordinate, Richtung)
         response = requests.get(f"{base_api_url}/Spiel/Schiffesetzen/{x_Koordinate}/{y_Koordinate}/{Richtung}").json()
         pprint(response["information"])
+
       else:
         print("Schiff setzen nicht möglich! Bitte erneut versuchen")
         eingabeSchiffe()
@@ -67,6 +72,7 @@ def eingabeSchiffe():
     else:
       print("Schiff setzen nicht möglich! Bitte versuche es erneut")
       eingabeSchiffe() 
+
   
 def eingabeSchuss():
     print("Bitte gebe einen Schuss an!")
@@ -90,8 +96,38 @@ def eingabeSchuss():
         break
       except:
         y_Koordinate = input("Es wurde keine Zahl übergeben. Bitte gebe eine Zahl [1-10] ein")
-    response = requests.get(f"{base_api_url}/Spiel/shoot/{x_Koordinate}/{y_Koordinate}").json()
-    pprint(response["information"])
+    response = requests.get(f"{base_api_url}/Spiel/Schussmoeglich/{x_Koordinate}/{y_Koordinate}").json()
+    if(response["Status"]):    
+      response = requests.get(f"{base_api_url}/Spiel/shoot/{x_Koordinate}/{y_Koordinate}").json()
+      pprint(response["information"])
+    else:
+      pprint(response["information"])
+      eingabeSchuss()
+
+def Hilfebrett(x : int, y : int, Richtung : int):
+  print(x, y, Richtung)
+  if(Richtung == 0):
+      print("cool")
+      i = 0
+      while (i < 4):
+        xi = x - 1
+        yi = y - 1
+        bS.Schiffsetzen(xi, yi)
+        y = y + 1
+        i = i + 1
+  elif(Richtung == 1):
+      print("cool")
+      i = 0
+      while (i < 4):
+        xi = x - 1
+        yi = y - 1
+        bS.Schiffsetzen(xi, yi)
+        x = x + 1
+        i = i + 1
+  bS.print_board()
+
+
+
   
 
 
@@ -131,6 +167,7 @@ def main():
       while (i < 4):
         eingabeSchiffe()
         i = i + 1
+      bS.print_board()
     else:
       pprint(response["information"])
     time.sleep(5.0)
@@ -139,7 +176,7 @@ def main():
       t = True
       pprint(response["information"])
   
-  #k = True
+
   response = requests.get(f"{base_api_url}/Spiel/getGame").json()
   while (response["Status"]):
     response = requests.get(f"{base_api_url}/Spiel/Schießen/{username}").json()
@@ -151,6 +188,15 @@ def main():
       pprint(response["information"])
       time.sleep(5.0)
     response = requests.get(f"{base_api_url}/Spiel/getGame").json()
+
+  
+  response = requests.get(f"{base_api_url}/Spiel/End/{username}").json()
+  pprint(response["information"])
+
+
+
+
+
 
 
 

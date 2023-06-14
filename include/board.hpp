@@ -21,6 +21,7 @@ public:
   void setM(int r, int c);              //Funktion welche ein M setzt um einen Miss zu markieren
   void setD(int r, int c);
   void setO(int r, int c);
+  bool whatshere(int c, int r);
 
 private: 
   const int rows = 10;                  //Jedes Brett hat 10 Reihen
