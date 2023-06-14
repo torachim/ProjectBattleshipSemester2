@@ -27,6 +27,7 @@ rapi = FastAPI()
 playerList, playerName = [], [] 
 player1 = None
 player2 = None
+Sieger = None
 Schiffzaehler1, Schiffzaehler2  = 0, 0
 counter = 0
 game = False
@@ -34,7 +35,7 @@ b1S, b1L, b2S, b2L = board(), board(), board(), board()
 
 @rapi.get("/")
 async def Hauptnachricht():
-  txtNachricht = f"Willkommen bei Schiffeversenken.\n In diesem Spiel befinden sich aktuell {len(playerName)} Spieler."
+  txtNachricht = f'Willkommen bei Schiffeversenken.\nIn diesem Spiel befinden sich aktuell {len(playerName)} Spieler.'
   return {"information": txtNachricht}
 
 #Spieler hinzufuegen
@@ -45,7 +46,7 @@ async def Spielerhinzufuegen(userName : str):
     if (not game):
       playerName.append(userName)
     else:
-      return{"information": "Spiel hat schon gestartet",
+      return{"information": 'Spiel hat schon gestartet',
              "status": False}
     
   if (len(playerName) == 2):
@@ -53,16 +54,16 @@ async def Spielerhinzufuegen(userName : str):
     player2 = Spieler(b2S, b2L, playerName[1])
     playerList.append(player1)
     playerList.append(player2)
-    return {"information": "Spiel startet",
+    return {"information": 'Spiel startet',
             "Status": True}
   else:
-    return {"information": "Warte auf andere Spieler...",
+    return {"information": 'Warte auf andere Spieler...',
             "Status": False}
   
 @rapi.get("/Spiel/Setzen/{userName}")
 async def Setzen(userName : str):
   global counter, playerName
-  txt = userName, "setze deine Schiffe"
+  txt = userName, 'Setze deine Schiffe'
   if (userName == playerName[0] and counter == 0):
     return {"information" : txt,
             "Status": True}
@@ -70,7 +71,7 @@ async def Setzen(userName : str):
     return {"information" : txt,
             "Status": True}
   else:
-    return {"information": "Der Gegner sitzt gerade seine Schiffe. Bitte warten",
+    return {"information": 'Der Gegner sitzt gerade seine Schiffe. Bitte warten',
             "Status": False}
 
 @rapi.get("/Spiel/Schiffesetzen/{x_Koordinate}/{y_Koordinate}/{Richtung}")
@@ -98,7 +99,7 @@ async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
       if(Schiffzaehler2 == 4):
         game == True
       counter = 1
-    return {"information" : "Schiff gesetzt",
+    return {"information" : 'Schiff gesetzt',
             "Status" : True}
   elif(counter == 1):
     if(Richtung == 1):
@@ -122,21 +123,18 @@ async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
       if (Schiffzaehler1 == 4):
         game = True
       counter = 0
-    return {"information": "Schiff gesetzt",
+    return {"information": 'Schiff gesetzt',
             "Status" : True}
   
 @rapi.get("/Spiel/Schiffkontrolle/{x_Koordinate}/{y_Koordinate}/{Richtung}")
 async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
   global playerList, counter, player1, player2, b1L, b1S, b2L, b2S
-  print("In der Funktion")
   x = x_Koordinate - 1
   y = y_Koordinate - 1
   if(counter == 0):
     if(b1S.can_set_ship(x, y, Richtung) == True):
-      print("In True")
       return {"Status" : True}
     elif(b1S.can_set_ship(x, y, Richtung) == False):
-      print("In False")
       return {"Status" : False}
   elif(counter == 1):
     if(b2S.can_set_ship(x, y, Richtung) == True):
@@ -147,7 +145,7 @@ async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
 @rapi.get("/Spiel/Schießen/{userName}")
 async def WerIstdran(userName : str):
   global counter, playerName
-  txt = userName, "Du bist dran! Wage einen Schuss"
+  txt = userName, 'Du bist dran! Wage einen Schuss'
   if (userName == playerName[0] and counter == 0):
     return {"information" : txt,
             "Status" : True}
@@ -155,21 +153,23 @@ async def WerIstdran(userName : str):
     return {"information" : txt,
             "Status" : True}
   else:
-    return {"information" : "Der Gegner ist gerade dran. Bitte warte auf deinen Zug",
+    return {"information" : 'Der Gegner ist gerade dran. Bitte warte auf deinen Zug',
             "Status" : False}
   
 @rapi.get("/Spiel/KontrolleWinner/{userName}")
 async def Gewonnen(userName : str):
-  global playerName, player1, player2, b1L, b2L, game
+  global playerName, player1, player2, b1L, b2L, game, Sieger
   if(userName == playerName[0]):
     if(not b1L.winner()):
       game = False
+      Sieger = playerName[0]
       return {"Status" : True}
     else:
       return {"Status" : False}
   else:
     if(not b2L.winner()):
       game = False
+      Sieger = playerName[1]
       return {"Status" : True}
     else:
       return{"Status" : False}
@@ -179,10 +179,10 @@ async def Gewonnen(userName : str):
 async def Starten():
   global game
   if(game == True):
-    return {"information" : "Gleich geht es los",
+    return {"information" : 'Gleich geht es los',
             "Status" : True}
   else:
-    return {"information" : "Bitte Warten",
+    return {"information" : 'Bitte Warten',
             "Status" : False}
   
 
@@ -195,22 +195,22 @@ async def Schießen(x_Koordinate : int, y_Koordinate : int):
   if(counter == 0):
     if(b2S.is_hit(x, y)):
       b1L.SetzeH(x, y)
-      return {"information" : "Treffer gelandet!",
+      return {"information" : 'Treffer gelandet!',
               "Status" : True}
     else:
       b1L.setzeM(x, y)
       counter = 1
-      return {"information" : "Kein Treffer! Der Gegner ist dran",
+      return {"information" : 'Kein Treffer! Der Gegner ist dran',
               "Status" : False}
   elif(counter == 1):
     if(b1S.is_hit(x, y)):
       b2L.SetzeH(x, y)
-      return {"information" : "Treffer gelandet!",
+      return {"information" : 'Treffer gelandet!',
               "Status" : True}
     else:
       b2L.setzeM(x, y)
       counter = 0
-      return {"information" : "Kein Treffer! Der Gegner ist dran",
+      return {"information" : 'Kein Treffer! Der Gegner ist dran',
               "Status" : False}
     
 @rapi.get("/Spiel/getGame")
@@ -220,6 +220,39 @@ async def getGame():
     return {"Status" : True}
   else:
     return {"Status" : False}
+  
+@rapi.get("/Spiel/End/{userName}")
+async def endgame(userName : str):
+  global Sieger, playerName
+  txts = 'Glückwunsch', userName, 'Du hast Gewonnen. Schön gespielt'
+  txtv = 'Schade', userName, 'Du hast leider Verloren. Versuch es doch mit einer Revanche'
+  if(userName == Sieger):
+    return {"information" : txts,
+            "Status": True}
+  else:
+    return {"information" : txtv,
+            "Status" : False}
+  
+@rapi.get("/Spiel/Schussmoeglich/{x_Koordinate}/{y_Koordinate}")
+async def Schusstest(x_Koordinate : int, y_Koordinate : int):
+  global counter, b1L, b1S, b2L, b2S
+  x = x_Koordinate - 1
+  y = y_Koordinate - 1
+  txt = "Schuss nicht möglich, da auf diese Koordinate bereits geschossen wurde"
+  if(counter == 0):
+    if(b1L.pruefe(x, y)):
+      return {"Status" : True}
+    else:
+      return {"information" : txt, 
+              "Status" : False}
+  else:
+    if(b2L.pruefe(x, y)):
+      return {"Status" : True}
+    else:
+      return {"information" : txt ,
+              "Status" : False}
+  
+
 
 
 

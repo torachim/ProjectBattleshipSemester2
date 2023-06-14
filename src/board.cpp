@@ -127,12 +127,14 @@ namespace ProjectAlpha2{
                 matrix[r][c] = DESTROYED;  // wird als Kaputt makiert
                 //setD(r, c);
                     //cout << endl<< "Hit! Continue";
+                    printBoard();
                     return true;
             }
             else
             {
                 matrix[r][c] = NOHIT; //sonst als Nohit makiert
                 //cout<<endl<< "Miss! It's your opponent's turn";
+                printBoard();
                 return false;
                 // anderer Spieler ist dran
             }
@@ -146,6 +148,7 @@ namespace ProjectAlpha2{
          * @param c coloumn Koordinate
          */
         void board::Schiffsetzen(int c, int r){
+            cout << "In funktion" << endl;
             matrix[r][c] = SHIP;
             printBoard();
         }
@@ -180,6 +183,15 @@ namespace ProjectAlpha2{
         void board::setO(int c, int r){
             matrix[r][c] = NOHIT;
             printBoard();
+        }
+
+        bool board::whatshere(int c, int r){
+            if(matrix[r][c] == HIT || matrix[r][c] == MISS){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
 
 

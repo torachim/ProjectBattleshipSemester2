@@ -40,7 +40,8 @@ PYBIND11_MODULE(schiffeversenken, m) {
         .def("SetzeH", &board::setH)
         .def("setzeM", &board::setM)
         .def("setzeX", &board::setD)
-        .def("setzeO", &board::setO);
+        .def("setzeO", &board::setO)
+        .def("pruefe", &board::whatshere);
 
 
     py::class_<::Spieler>(m, "Spieler")
