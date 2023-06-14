@@ -116,12 +116,6 @@ async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
 
 
 
-
-
-
-
-
-
 if __name__ == '__main__':
   this_python_file = os.path.basename(__file__)[:-3]
   instance = uvicorn.run(f"{this_python_file}:rapi", host="127.0.0.1", port=8000, log_level="info", reload=True)

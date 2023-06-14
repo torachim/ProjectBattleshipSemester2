@@ -48,7 +48,7 @@ namespace ProjectAlpha2{
          * @return true Schiff kann gesetzt werden
          * @return false Schiff kann nicht gesetzt werden
          */
-        bool board::canSetShip(int r, int c, int isHorizontal)  //Überprüft, ob Eingabe korrekt ist
+        bool board::canSetShip(int c, int r, int isHorizontal)  //Überprüft, ob Eingabe korrekt ist
         {
             if(isHorizontal == 1){
 
@@ -94,7 +94,7 @@ namespace ProjectAlpha2{
                 {
                     if(matrix[r][c]==HIT)
                     { 
-                        h++; //Counter wird bei jedem Hitt erhöht
+                        h++; //Counter wird bei jedem Hit erhöht
                     }
                 } 
             }  
