@@ -129,19 +129,21 @@ async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
 async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
   global playerList, counter, player1, player2, b1L, b1S, b2L, b2S
   print("In der Funktion")
+  x = x_Koordinate - 1
+  y = y_Koordinate - 1
   if(counter == 0):
     #a = player1.Erhalte_Schiffe_Brett()
-    if(b1S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
+    if(b1S.can_set_ship(x, y, Richtung) == True):
       print("In True")
       return {"Status" : True}
-    elif(b1S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
+    elif(b1S.can_set_ship(x, y, Richtung) == False):
       print("In False")
       return {"Status" : False}
   elif(counter == 1):
     #b = player2.Erhalte_Schiffe_Brett()
-    if(b2S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
+    if(b2S.can_set_ship(x, y, Richtung) == True):
       return {"Status" : True}
-    elif(b2S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
+    elif(b2S.can_set_ship(x, y, Richtung) == False):
       return {"Status" : False}
     
 @rapi.get("/Spiel/Schießen/{userName}")
