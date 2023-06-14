@@ -60,3 +60,8 @@ Implementiert wird das Spiel über 3 Klassen:
     - [ ] endgame(): Beendet das Spiel und ruft den Sieger aus
 
 ## Tests
+
+Getestete Funktion isHit welche auch gleichzeitug die Schuss sowie die setzen Funktion testet ohne Fehler getestet.
+Auch die winner Funktion welche zurueck gibt welcher Spieler gewonnen hat wurde ohne Probleme getestet
+Selbiges gilt auch für die cansetship Funktion welche gleichzeitig auch das Korrekte erzeugen eines Brettes mittestet
+-> Alle wichtigen Tests erfolgreich durchlaufen
