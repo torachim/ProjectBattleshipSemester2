@@ -65,7 +65,7 @@ def eingabeSchiffe():
         eingabeSchiffe()
 
     else:
-      print("Schiff setzen nicht möglich bitte versuche es erneut")
+      print("Schiff setzen nicht möglich! Bitte versuche es erneut")
       eingabeSchiffe() 
   
 def eingabeSchuss():

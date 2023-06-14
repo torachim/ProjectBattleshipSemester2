@@ -96,7 +96,7 @@ namespace ProjectAlpha2{
                 {
                     if(matrix[r][c]==HIT)
                     { 
-                        h++; //Counter wird bei jedem Hitt erhöht
+                        h++; //Counter wird bei jedem Hit erhöht
                     }
                 } 
             }  
