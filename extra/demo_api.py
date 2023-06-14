@@ -171,9 +171,6 @@ async def WerIstdran(userName : str):
 
 
 
-  
-
-  
 
 
 if __name__ == '__main__':
