@@ -27,7 +27,7 @@ rapi = FastAPI()
 playerList, playerName = [], [] 
 player1 = None
 player2 = None
-Schiffzaehler = 0
+Schiffzaehler1, Schiffzaehler2  = 0, 0
 counter = 0
 game = False
 b1S, b1L, b2S, b2L = board(), board(), board(), board()
@@ -75,7 +75,7 @@ async def Setzen(userName : str):
 
 @rapi.get("/Spiel/Schiffesetzen/{x_Koordinate}/{y_Koordinate}/{Richtung}")
 async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
-  global counter, playerList, Schiffzaehler, player1, player2, b1L, b1S, b2L, b2S
+  global counter, playerList, Schiffzaehler1, Schiffzaehler2, player1, player2, b1L, b1S, b2L, b2S, game
   if (counter == 0):
     if(Richtung == 1):
       i = 0
@@ -93,10 +93,10 @@ async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
         b1S.Schiffsetzen(x, y)
         y_Koordinate = y_Koordinate + 1
         i = i + 1
-    #player1.setShips(x_Koordinate, y_Koordinate, Richtung)
-    Schiffzaehler = Schiffzaehler + 1
-    if (Schiffzaehler == 4):
-      Schiffzaehler = 0
+    Schiffzaehler1 = Schiffzaehler1 + 1
+    if (Schiffzaehler1 == 4):
+      if(Schiffzaehler2 == 4):
+        game == True
       counter = 1
     return {"information" : "Schiff gesetzt",
             "Status" : True}
@@ -117,10 +117,10 @@ async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
         b2S.Schiffsetzen(x, y)
         y_Koordinate = y_Koordinate + 1
         i = i + 1
-    #player2.setShips(x_Koordinate, y_Koordinate, Richtung)
-    Schiffzaehler = Schiffzaehler + 1
-    if (Schiffzaehler == 4):
-      Schiffzaehler = 0
+    Schiffzaehler2 = Schiffzaehler2 + 1
+    if (Schiffzaehler2 == 4):
+      if (Schiffzaehler1 == 4):
+        game = True
       counter = 0
     return {"information": "Schiff gesetzt",
             "Status" : True}
@@ -132,7 +132,6 @@ async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
   x = x_Koordinate - 1
   y = y_Koordinate - 1
   if(counter == 0):
-    #a = player1.Erhalte_Schiffe_Brett()
     if(b1S.can_set_ship(x, y, Richtung) == True):
       print("In True")
       return {"Status" : True}
@@ -140,7 +139,6 @@ async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
       print("In False")
       return {"Status" : False}
   elif(counter == 1):
-    #b = player2.Erhalte_Schiffe_Brett()
     if(b2S.can_set_ship(x, y, Richtung) == True):
       return {"Status" : True}
     elif(b2S.can_set_ship(x, y, Richtung) == False):
@@ -160,8 +158,69 @@ async def WerIstdran(userName : str):
     return {"information" : "Der Gegner ist gerade dran. Bitte warte auf deinen Zug",
             "Status" : False}
   
-#@rapi.get("/Spiel/KontrolleWinner/{userName}")
-#async def Gewonnen(userName : str):
+@rapi.get("/Spiel/KontrolleWinner/{userName}")
+async def Gewonnen(userName : str):
+  global playerName, player1, player2, b1L, b2L, game
+  if(userName == playerName[0]):
+    if(not b1L.winner()):
+      game = False
+      return {"Status" : True}
+    else:
+      return {"Status" : False}
+  else:
+    if(not b2L.winner()):
+      game = False
+      return {"Status" : True}
+    else:
+      return{"Status" : False}
+
+
+@rapi.get("/Spiel/starten")
+async def Starten():
+  global game
+  if(game == True):
+    return {"information" : "Gleich geht es los",
+            "Status" : True}
+  else:
+    return {"information" : "Bitte Warten",
+            "Status" : False}
+  
+
+
+@rapi.get("/Spiel/shoot/{x_Koordinate}/{y_Koordinate}")
+async def Schießen(x_Koordinate : int, y_Koordinate : int):
+  global playerList, playerName, b1L, b1S, b2L, b2S, counter
+  x = x_Koordinate - 1
+  y = y_Koordinate - 1
+  if(counter == 0):
+    if(b2S.is_hit(x, y)):
+      b1L.SetzeH(x, y)
+      return {"information" : "Treffer gelandet!",
+              "Status" : True}
+    else:
+      b1L.setzeM(x, y)
+      counter = 1
+      return {"information" : "Kein Treffer! Der Gegner ist dran",
+              "Status" : False}
+  elif(counter == 1):
+    if(b1S.is_hit(x, y)):
+      b2L.SetzeH(x, y)
+      return {"information" : "Treffer gelandet!",
+              "Status" : True}
+    else:
+      b2L.setzeM(x, y)
+      counter = 0
+      return {"information" : "Kein Treffer! Der Gegner ist dran",
+              "Status" : False}
+    
+@rapi.get("/Spiel/getGame")
+async def getGame():
+  global game
+  if(game == True):
+    return {"Status" : True}
+  else:
+    return {"Status" : False}
+
 
 
 

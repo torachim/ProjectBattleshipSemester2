@@ -115,24 +115,24 @@ namespace ProjectAlpha2{
          * @return true Schiffsteil wurde getroffen
          * @return false Kein Schiffsteil wurde getroffen
          */
-        bool board::isHit(int r, int c) //Überpüft ob Eingabe ein Hit ist
+        bool board::isHit(int c, int r) //Überpüft ob Eingabe ein Hit ist
         {
             if(matrix[r][c] == NOHIT || matrix[r][c] == DESTROYED)       //Teste ob Eingabe korrekt ist, also Koordinate wurde nicht schon bereits eingegeben
             {      
-                cout << endl << " Input incorrect. Please try again.";
+                //cout << endl << " Input incorrect. Please try again.";
                 return false;
             }
             if(matrix[r][c] == SHIP)  //Überprüft ob Hit ist
             { 
                 matrix[r][c] = DESTROYED;  // wird als Kaputt makiert
                 //setD(r, c);
-                    cout << endl<< "Hit! Continue";
+                    //cout << endl<< "Hit! Continue";
                     return true;
             }
             else
             {
                 matrix[r][c] = NOHIT; //sonst als Nohit makiert
-                cout<<endl<< "Miss! It's your opponent's turn";
+                //cout<<endl<< "Miss! It's your opponent's turn";
                 return false;
                 // anderer Spieler ist dran
             }
@@ -156,8 +156,9 @@ namespace ProjectAlpha2{
          * @param r x-Koordinate
          * @param c y-Koordinate
          */
-        void board::setH(int r, int c){
+        void board::setH(int c, int r){
             matrix[r][c] = HIT;
+            printBoard();
         }
 
         /**
@@ -166,16 +167,19 @@ namespace ProjectAlpha2{
          * @param r x-Koordinate
          * @param c y-Koordinate
          */
-        void board::setM(int r, int c){
+        void board::setM(int c, int r){
             matrix[r][c] = MISS;
+            printBoard();
         }
 
-        void board::setD(int r, int c){
+        void board::setD(int c, int r){
             matrix[r][c] = DESTROYED;
+            printBoard();
         }
 
-        void board::setO(int r, int c){
+        void board::setO(int c, int r){
             matrix[r][c] = NOHIT;
+            printBoard();
         }
 
 
