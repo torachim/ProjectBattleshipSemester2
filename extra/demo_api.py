@@ -27,19 +27,20 @@ rapi = FastAPI()
 playerList, playerName = [], [] 
 player1 = None
 player2 = None
+Schiffzaehler = 0
 counter = 0
 game = False
 b1S, b1L, b2S, b2L = board(), board(), board(), board()
 
 @rapi.get("/")
 async def Hauptnachricht():
-  txtNachricht = f"Willkommen bei Schiffeversenken.\n In diesem Spiel befinden sich aktuell {len(playerList)} Spieler."
+  txtNachricht = f"Willkommen bei Schiffeversenken.\n In diesem Spiel befinden sich aktuell {len(playerName)} Spieler."
   return {"information": txtNachricht}
 
 #Spieler hinzufuegen
 @rapi.get("/addPlayer/{userName}")
 async def Spielerhinzufuegen(userName : str):
-  global player1, player2, game, playerName, playerList
+  global player1, player2, game, playerName, playerList, b1S, b1L, b2S, b2L
   if(userName not in playerName and len(playerName) <= 1):
     if (not game):
       playerName.append(userName)
@@ -52,23 +53,72 @@ async def Spielerhinzufuegen(userName : str):
     player2 = Spieler(b2S, b2L, playerName[1])
     playerList.append(player1)
     playerList.append(player2)
-    return {"information": "Spiel kann gestartet werden",
+    return {"information": "Spiel startet",
             "Status": True}
   else:
     return {"information": "Warte auf andere Spieler...",
             "Status": False}
-
-@rapi.get("/Spiel/Spieler/{userName}")
-async def Erhalte_Spieler(userName : str):
-  global playerList, playerName
-  if (userName == playerName[0]):
-    t = player1.Erhalte_Schiffe_Brett()
-    return{"information": t,
-           "Status": True}
+  
+@rapi.get("/Spiel/Setzen/{userName}")
+async def Setzen(userName : str):
+  global counter, playerName
+  txt = userName, "setze deine Schiffe"
+  if (userName == playerName[0] and counter == 0):
+    return {"information" : txt,
+            "Status": True}
+  elif (userName == playerName[1] and counter == 1):
+    return {"information" : txt,
+            "Status": True}
   else:
-    k = player2.Erhalte_Schiffe_Brett()
-    return{"information": k,
-           "Status": True}
+    return {"information": "Der Gegner sitzt gerade seine Schiffe. Bitte warten",
+            "Status": False}
+
+@rapi.get("/Spiel/Schiffesetzen/{x_Koordinate}/{y_Koordinate}/{Richtung}")
+async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
+  global counter, playerList, Schiffzaehler, player1, player2, b1L, b1S, b2L, b2S
+  if (counter == 0):
+    player1.setShips(x_Koordinate, y_Koordinate, Richtung)
+    Schiffzaehler = Schiffzaehler + 1
+    if (Schiffzaehler == 4):
+      Schiffzaehler = 0
+      counter = 1
+    return {"information" : "Schiff gesetzt",
+            "Status" : True}
+  elif(counter == 1):
+    player2.setShips(x_Koordinate, y_Koordinate, Richtung)
+    Schiffzaehler = Schiffzaehler + 1
+    if (Schiffzaehler == 4):
+      Schiffzaehler = 0
+      counter = 0
+    return {"information": "Schiff gesetzt",
+            "Status" : True}
+  
+@rapi.get("/Spiel/Schiffkontrolle/{x_Koordinate}/{y_Koordinate}/{Richtung}")
+async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
+  global playerList, counter, player1, player2, b1L, b1S, b2L, b2S
+  print("In der Funktion")
+  if(counter == 0):
+    a = player1.Erhalte_Schiffe_Brett()
+    if(a.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
+      print("In True")
+      return {"Status" : True}
+    elif(a.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
+      print("In False")
+      return {"Status" : False}
+  elif(counter == 1):
+    b = player2.Erhalte_Schiffe_Brett()
+    if(b.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
+      return {"Status" : True}
+    elif(b.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
+      return {"Status" : False}
+
+  
+
+
+
+
+
+
 
 
 
