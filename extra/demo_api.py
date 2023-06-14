@@ -77,7 +77,23 @@ async def Setzen(userName : str):
 async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
   global counter, playerList, Schiffzaehler, player1, player2, b1L, b1S, b2L, b2S
   if (counter == 0):
-    player1.setShips(x_Koordinate, y_Koordinate, Richtung)
+    if(Richtung == 1):
+      i = 0
+      while (i < 4):
+        x = x_Koordinate - 1
+        y = y_Koordinate - 1
+        b1S.Schiffsetzen(x, y)
+        x_Koordinate = x_Koordinate + 1
+        i = i +1
+    elif(Richtung == 0):
+      i = 0
+      while(i < 4):
+        x = x_Koordinate - 1
+        y = y_Koordinate - 1
+        b1S.Schiffsetzen(x, y)
+        y_Koordinate = y_Koordinate + 1
+        i = i + 1
+    #player1.setShips(x_Koordinate, y_Koordinate, Richtung)
     Schiffzaehler = Schiffzaehler + 1
     if (Schiffzaehler == 4):
       Schiffzaehler = 0
@@ -85,7 +101,23 @@ async def set_Schiff(x_Koordinate : int, y_Koordinate : int, Richtung : int):
     return {"information" : "Schiff gesetzt",
             "Status" : True}
   elif(counter == 1):
-    player2.setShips(x_Koordinate, y_Koordinate, Richtung)
+    if(Richtung == 1):
+      i = 0
+      while (i < 4):
+        x = x_Koordinate - 1
+        y = y_Koordinate - 1
+        b2S.Schiffsetzen(x, y)
+        x_Koordinate = x_Koordinate + 1
+        i = i +1
+    elif(Richtung == 0):
+      i = 0
+      while(i < 4):
+        x = x_Koordinate - 1
+        y = y_Koordinate - 1
+        b2S.Schiffsetzen(x, y)
+        y_Koordinate = y_Koordinate + 1
+        i = i + 1
+    #player2.setShips(x_Koordinate, y_Koordinate, Richtung)
     Schiffzaehler = Schiffzaehler + 1
     if (Schiffzaehler == 4):
       Schiffzaehler = 0
@@ -98,19 +130,38 @@ async def SchipControl(x_Koordinate : int, y_Koordinate : int, Richtung : int):
   global playerList, counter, player1, player2, b1L, b1S, b2L, b2S
   print("In der Funktion")
   if(counter == 0):
-    a = player1.Erhalte_Schiffe_Brett()
-    if(a.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
+    #a = player1.Erhalte_Schiffe_Brett()
+    if(b1S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
       print("In True")
       return {"Status" : True}
-    elif(a.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
+    elif(b1S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
       print("In False")
       return {"Status" : False}
   elif(counter == 1):
-    b = player2.Erhalte_Schiffe_Brett()
-    if(b.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
+    #b = player2.Erhalte_Schiffe_Brett()
+    if(b2S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == True):
       return {"Status" : True}
-    elif(b.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
+    elif(b2S.can_set_ship(x_Koordinate, y_Koordinate, Richtung) == False):
       return {"Status" : False}
+    
+@rapi.get("/Spiel/Schießen/{userName}")
+async def WerIstdran(userName : str):
+  global counter, playerName
+  txt = userName, "Du bist dran! Wage einen Schuss"
+  if (userName == playerName[0] and counter == 0):
+    return {"information" : txt,
+            "Status" : True}
+  elif (userName == playerName[1] and counter == 1):
+    return {"information" : txt,
+            "Status" : True}
+  else:
+    return {"information" : "Der Gegner ist gerade dran. Bitte warte auf deinen Zug",
+            "Status" : False}
+  
+#@rapi.get("/Spiel/KontrolleWinner/{userName}")
+#async def Gewonnen(userName : str):
+
+
 
   
 

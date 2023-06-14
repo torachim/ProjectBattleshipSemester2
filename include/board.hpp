@@ -13,10 +13,10 @@ class board : public boardInterface {
 public:
   board();
   void printBoard();                //Funktion welche das entsprechende Board druckt
-  bool canSetShip(int r, int c, int isHorizontal);   //Funktion welche ueberprueft ob ein Angegebenes Schiff ueberhaupt gesetzt werden kann
+  bool canSetShip(int c, int r, int isHorizontal);   //Funktion welche ueberprueft ob ein Angegebenes Schiff ueberhaupt gesetzt werden kann
   bool isHit(int r, int c);         //Funktion welche ueberprueft ob ein Schuss ein Shiff trifft oder nicht
   bool winner();                    //Funktion welche für die Ueberpruefung gebraucht wird ob ein Spieler gewonnen hat
-  void Schiffsetzen(int r, int c);      //Funktion welche ein S an die entsprechende Stelle fuer ein Schiff setzt
+  void Schiffsetzen(int c, int r);      //Funktion welche ein S an die entsprechende Stelle fuer ein Schiff setzt
   void setH(int r, int c);              //Funktion welche ein H setzt um einen Hit auf einem Board zu markieren
   void setM(int r, int c);              //Funktion welche ein M setzt um einen Miss zu markieren
   void setD(int r, int c);
