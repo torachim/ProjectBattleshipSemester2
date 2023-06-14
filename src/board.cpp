@@ -119,24 +119,19 @@ namespace ProjectAlpha2{
         {
             if(matrix[r][c] == NOHIT || matrix[r][c] == DESTROYED)       //Teste ob Eingabe korrekt ist, also Koordinate wurde nicht schon bereits eingegeben
             {      
-                //cout << endl << " Input incorrect. Please try again.";
                 return false;
             }
             if(matrix[r][c] == SHIP)  //Überprüft ob Hit ist
             { 
                 matrix[r][c] = DESTROYED;  // wird als Kaputt makiert
-                //setD(r, c);
-                    //cout << endl<< "Hit! Continue";
                     printBoard();
                     return true;
             }
             else
             {
                 matrix[r][c] = NOHIT; //sonst als Nohit makiert
-                //cout<<endl<< "Miss! It's your opponent's turn";
                 printBoard();
                 return false;
-                // anderer Spieler ist dran
             }
         }
 
@@ -161,7 +156,6 @@ namespace ProjectAlpha2{
          */
         void board::setH(int c, int r){
             matrix[r][c] = HIT;
-            printBoard();
         }
 
         /**
@@ -172,17 +166,14 @@ namespace ProjectAlpha2{
          */
         void board::setM(int c, int r){
             matrix[r][c] = MISS;
-            printBoard();
         }
 
         void board::setD(int c, int r){
             matrix[r][c] = DESTROYED;
-            printBoard();
         }
 
         void board::setO(int c, int r){
             matrix[r][c] = NOHIT;
-            printBoard();
         }
 
         bool board::whatshere(int c, int r){

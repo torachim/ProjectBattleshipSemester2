@@ -56,8 +56,7 @@ namespace ProjectAlpha2{
     void Game::startgame(int x){
         cout << "WILLKOMMEN BEI SCHIFFEVERSENKEN" << endl;
         cout << "MÖCHTEST DU: \nEIN SPIEL STARTEN (1) \nDIE REGELN SEHEN (2) \nEINGABE(1/2)" << endl;       //Eingabe ob man die Regeln sehen will oder direkt starten will
-        //int x;
-        //cin >> x;
+
         if (x == 1 || x == 2){
             if (x == 2){
                // printrules();                   //Bei entsprechender Eingabe werden die Regeln gedruckt

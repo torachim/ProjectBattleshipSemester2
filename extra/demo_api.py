@@ -3,10 +3,7 @@
 #   uvicorn demo_fastapi_2:meine_coole_rest_api --port 8000 --reload
 # or, if uvicorn is not in PATH, run as
 #   python3 -m uvicorn demo_api:rapi --port 8000  --reload
-# 
 
-
-# Import magic
 try:
   import schiffeversenken
 except ImportError as e:

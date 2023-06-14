@@ -10,22 +10,6 @@
 namespace py = pybind11;
 using namespace ProjectAlpha2;
 
-
-  /*  void run_game() 
-{
-    ProjectAlpha2::board m;
-    ProjectAlpha2::board l;
-    ProjectAlpha2::board k;
-    ProjectAlpha2::board n;
-
-    ProjectAlpha2::Spieler t(m , l, "Torge");
-    ProjectAlpha2::Spieler p(k, n, "Gegner");
-
-    ProjectAlpha2::Game g(t, p);
-
-    g.startgame();
-}*/
-
 PYBIND11_MODULE(schiffeversenken, m) {
 
     m.doc() = "Schiffeversenken example";

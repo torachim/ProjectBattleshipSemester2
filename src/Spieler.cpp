@@ -33,32 +33,10 @@ namespace ProjectAlpha2{
      */
     void Spieler::setShips(int x, int y, int isHorizontal){
 
-            //int x;  // Variable für Column Eingabe
-            //int y;  // Variable für Row Eingabe
-            //bool isHorizontal; // Entscheidet in welche Richtung das Ship geht
-
-            //cout << endl <<"Enter starting coordinate x (1-10): " ; //Abfrage der Anfangskoordinate
-            //cin >> x ;
-            //if(x > 10 || x < 1){
-            //    cout << endl << "Input incorrect! Please try again!";
-               // setShips();
-            //}
-            //cout << endl <<"Enter starting coordinate y (1-10): " ;
-            //cin >> y;
-            //if(y > 10 || y < 1){
-            //    cout << endl << "Input incorret! Please try again!";
-                //setShips();
-            //}
-
-            //cout << endl << "Enter Orientation(1 for horizontal,0 for vertical): "; //Abfrage der Richtung
-            //cin >> isHorizontal;
         
             int c = x -1 ; //  da Index eigentlich bei null beginnt
             int r = y -1 ;
 
-            //bool canSet = boardS.canSetShip (c, r, isHorizontal);
-            //if(canSet)  //Überprüft ob Eingabe korrekt
-            //{ 
                 if(isHorizontal == 1) //Setzt ein horizontales Schiff
                 {
                     for (int i = 0; i < 4; ++i) //Setzen von vier S (SHIPS)
@@ -77,28 +55,12 @@ namespace ProjectAlpha2{
                 }
                 boardS.printBoard();  // druckt Spielfeld mit seinen eigenen Schiffen aus
             }
-            //else
-            //{
-              //  cout<< endl << "Input incorrect. Please try again."; //Erneute eingabe, falls Fehler bei vorheriger Eingabe
-                //setShips();
-           // }  
-        //}
 
         /**
          * @brief Funktion mit welcher ein Spieler schießen kann
          * 
          */
         void Spieler::shoot(int x, int y){
-
-            //int x;
-            //int y;
-
-            //cout << endl <<"Wage einen Schuss!";//Abfrage nach einem Rateversuch
-            //cout << endl <<"Enter x coordinate: "; 
-            //cin >> x;
-            //cout << endl <<"Enter y coordinate: ";
-            //cin >> y;
-
 
             int r = y - 1; // da bei der Eingabe bei 1 begonnen wird, aber Indizes der Matrix bei 0 beginnen
             int c = x - 1;
