@@ -29,14 +29,14 @@ def eingabeSchiffe():
     x_Koordinate = input() #Eingegebene Koordinate in x_Koordinate gespeeichert
     while True:
       try:
-        while int(x_Koordinate) < 1 or int(x_Koordinate) > 10:
+        while int(x_Koordinate) < 1 or int(x_Koordinate) > 10: #falls Eingabe nicht zwischen 1 und 10
           print("Fehlerhafte Eingabe! Bitte eine Zahl zwischen 1 und 10 eingeben")
-          x_Koordinate = input()
+          x_Koordinate = input() #erneute Abfrage
         break
       except:
         x_Koordinate = input("Es wurde keine Zahl übergeben. Gebe eine Zahl zwischen 1 und 10 ein \n")
 
-    print("Bitte gebe die y-Koordinate deines Schiffes an [1-10]")
+    print("Bitte gebe die y-Koordinate deines Schiffes an [1-10]") # Das selbe für y koordinate
     y_Koordinate = input()
     while True:
       try:
@@ -47,8 +47,8 @@ def eingabeSchiffe():
       except:
         y_Koordinate = input("Es wurde keine Zahl übergeben. Gebe eine Zahl zwischen 1 und 10 ein \n")
 
-    print("Bitte Gebe die Richtung des Schiffes 0[Vertikal] 1[Horrizontal]")
-    Richtung = input()
+    print("Bitte Gebe die Richtung des Schiffes 0[Vertikal] 1[Horrizontal]") #Das selbe für Richtung des schiffes
+      Richtung = input()
     while True:
       try:
         while int(Richtung) < 0 or int(Richtung) > 1:
@@ -58,7 +58,7 @@ def eingabeSchiffe():
       except:
         Richtung = input("Es wurde keine Zahl übergebn. Gebe 0[Vertikal], 1[Horrizontal]")
 
-    if (kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung) == True):
+    if (kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung) == True): #aufrufen ship control funk
       response = requests.get(f"{base_api_url}/Spiel/Schiffkontrolle/{x_Koordinate}/{y_Koordinate}/{Richtung}").json()
       if(response["Status"]):
         Hilfebrett(x_Koordinate, y_Koordinate, Richtung)
@@ -77,7 +77,7 @@ def eingabeSchiffe():
 def eingabeSchuss():
     print("Bitte gebe einen Schuss an!")
     print("Bitte gebe eine X-Koordinate für den Schuss an [1-10]")
-    x_Koordinate = input()
+    x_Koordinate = input() #Eingabe Schuss Koordinaten, rest selbes prinzip wie vorher
     while True:
       try:
         while int(x_Koordinate) < 1 or int(x_Koordinate) > 10:
@@ -104,7 +104,7 @@ def eingabeSchuss():
       pprint(response["information"])
       eingabeSchuss()
 
-def Hilfebrett(x : int, y : int, Richtung : int):
+def Hilfebrett(x : int, y : int, Richtung : int): # Brett mit Schiffen
   print(x, y, Richtung)
   if(Richtung == 0):
       print("cool")
@@ -148,10 +148,10 @@ def main():
   pprint(response["information"])
 
   username = input("Bitte gebe deinen Namen ein:")
-  response = requests.get(f"{base_api_url}/addPlayer/{username}").json()
+  response = requests.get(f"{base_api_url}/addPlayer/{username}").json() # spieler erstellen
 
   
-  while(not response["Status"]):
+  while(not response["Status"]): # gibt an, wann spiel beginnt
     pprint(response["information"])
     response = requests.get(f"{base_api_url}/addPlayer/{username}").json()
     time.sleep(5.0)
@@ -164,33 +164,33 @@ def main():
     if(response["Status"] == True):
       pprint(response["information"])
       i = 0
-      while (i < 4):
+      while (i < 4):# 4 schiffe setzten
         eingabeSchiffe()
         i = i + 1
-      bS.print_board()
+      bS.print_board() # Board mit schiffen printen
     else:
       pprint(response["information"])
     time.sleep(5.0)
-    response = requests.get(f"{base_api_url}/Spiel/starten").json()
+    response = requests.get(f"{base_api_url}/Spiel/starten").json() 
     if(response["Status"]):
       t = True
       pprint(response["information"])
   
 
-  response = requests.get(f"{base_api_url}/Spiel/getGame").json()
+  response = requests.get(f"{base_api_url}/Spiel/getGame").json() # noch im spiel?
   while (response["Status"]):
-    response = requests.get(f"{base_api_url}/Spiel/Schießen/{username}").json()
+    response = requests.get(f"{base_api_url}/Spiel/Schießen/{username}").json() # schiff setzten
     if(response["Status"]):
       pprint(response["information"])
       eingabeSchuss()
-      response = requests.get(f"{base_api_url}/Spiel/KontrolleWinner/{username}").json()
+      response = requests.get(f"{base_api_url}/Spiel/KontrolleWinner/{username}").json() # durch schuss gewonen?
     else:
       pprint(response["information"])
       time.sleep(5.0)
     response = requests.get(f"{base_api_url}/Spiel/getGame").json()
 
   
-  response = requests.get(f"{base_api_url}/Spiel/End/{username}").json()
+  response = requests.get(f"{base_api_url}/Spiel/End/{username}").json() # beendung des Spieles
   pprint(response["information"])
 
 
