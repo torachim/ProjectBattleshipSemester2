@@ -10,8 +10,8 @@ from pprint import pprint # Bei größeren Dicts sollte man pprint(...) statt pr
 base_api_url = "http://127.0.0.1:8000"
 
 def kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung):
-  if int(Richtung) == 0:
-    if int(y_Koordinate) + 4 <= 10:
+  if int(Richtung) == 0: #wenn Gesetztes horizontal ist
+    if int(y_Koordinate) + 4 <= 10: #kontrolliert ob gesetztes Schiff nicht über Brett hinausläuft
       return True
     else:
       return False
@@ -23,7 +23,7 @@ def kontrolleSchiffe(x_Koordinate, y_Koordinate, Richtung):
 
 def eingabeSchiffe():
     print("Bitte gebe die x-Koordinate deines Schiffes an [1-10]")
-    x_Koordinate = input()
+    x_Koordinate = input() #Eingegebene Koordinate in x_Koordinate gespeeichert
     while True:
       try:
         while int(x_Koordinate) < 1 or int(x_Koordinate) > 10:
